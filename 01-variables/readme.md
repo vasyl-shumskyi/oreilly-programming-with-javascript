@@ -177,14 +177,14 @@ you've put where.
 
 ### Practice
 
-[1] What happens when you print out the value of a variable that you have
+__1)__ What happens when you print out the value of a variable that you have
 declared but you didn't define?
 ```
     > var declared
     > console.log(declared)
     undefined
 ```
-[2] Identifiers have some pretty specific rules in JavaScript. Experiment with
+[ 2 ] Identifiers have some pretty specific rules in JavaScript. Experiment with
 declaring variables using various symbols other than letters and numbers and see
 when you get a Syntax Error.
 ```
@@ -207,7 +207,7 @@ when you get a Syntax Error.
     > var sdfv(dfv
     VM181:1 Uncaught SyntaxError: Unexpected token (
 ```
-[3] Declare and define a variable that stores your name. Using that variable,
+3) Declare and define a variable that stores your name. Using that variable,
 construct a new variable that represents a greeting by concatentating "Hello" in
 front of your name. For example, we'd want to store the value "Hello Semmy" in a
 variable, where "Semmy" is stored in another variable.
