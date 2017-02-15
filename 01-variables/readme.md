@@ -180,9 +180,9 @@ you've put where.
 __1)__ What happens when you print out the value of a variable that you have
 declared but you didn't define?
 ```
-    > var declared
-    > console.log(declared)
-    undefined
+> var declared
+> console.log(declared)
+undefined
 ```
 __2)__ Identifiers have some pretty specific rules in JavaScript. Experiment with
 declaring variables using various symbols other than letters and numbers and see
