@@ -217,25 +217,50 @@ variable, where "Semmy" is stored in another variable.
 > greeting = 'Hello ' + name;
 "Hello Vasyl"
 > console.log(greeting);
-"Hello Vasyl"
+Hello Vasyl
 ```
 
 __4)__ Using just the name variable from the previous question, create a more
 complex greeting that looks like "Hello, Semmy!" and store that in a variable.
 ```
-?
+> greeting = 'Hello, ' + name + '!';
+"Hello, Vasyl!"
+> console.log(greeting);
+Hello, Vasyl!
 ```
 __5)__ Create a variable that represents a worker's hourly wage. Create another
 variable that represents the number of hours a worker has worked. Store values
 in both of those variables, and create a variable that stores the total wage
 based on the number of hours worked and the hourly wage.
-
+```
+> hourlyWage = 10;
+10
+> workingHours = 5;
+5
+> totalWage = hourlyWage * workingHours;
+50
+> console.log(totalWage);
+50
+```
 __6)__ We've seen that variables can store strings and numbers. We've also seen that
 when we have two strings the `+` operator means _concatenation_, whereas when we
 have two number variables it represents _addition_. What happens when we mix and
 match number and string variables? Give it a try and do your best to explain
 what you see.
-
+```
+> number1 = 5
+5
+> number2 = 7
+7
+> string1 = 'aaaaaa'
+"aaaaaa"
+> string2 = 'bbbbbb'
+"bbbbbb"
+> number1 + string1 + number2 + string2
+"5aaaaaa7bbbbbb"
+> number1 + number2 + string1 + string2
+"12aaaaaabbbbbb"
+```
 __7)__ In the last example, we ended up with a long decimal number. We'd
 like to round it off, but we don't know how to do that. The _Mozilla
 Developer Network_ has excellent JavaScript documentation, and there
@@ -245,7 +270,12 @@ function [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referenc
 If you're feeling very brave, give it a try! You can round dollar amounts to two
 decimal places by first multiplying by 100, then rounding the nearest integer,
 then dividing by 100. You can divide by using the `/` operator.
-
+```
+> unrounded_number = 23.345241000102;
+23.345241000102
+> Math.round(unrounded_number*100)/100;
+23.35
+```
 __8)__ You may have seen HTML in the past, but in case you haven't, a paragraph tag
 in HTML looks like this:
 
@@ -256,7 +286,14 @@ tag. Create a variable that stores the value "This is a paragraph!" and then use
 it to construct a new value that represents this snippet of HTML by
 concatenating an opening `<p>` tag to the front, and a closing `</p>` tag to the
 back.
-
+```
+> paragraph = "This is a paragraph!";
+"This is a paragraph!"
+> html_paragraph = '<p>' + paragraph + '</p>';
+"<p>This is a paragraph!</p>"
+> console.log(html_paragraph);
+<p>This is a paragraph!</p>
+```
 __9)__ Consider the following sequence of variable assignments.
 
         var tweet = "hello world!";
@@ -266,13 +303,19 @@ __9)__ Consider the following sequence of variable assignments.
         tweet = tweet + count;
 
         // what is the value of tweet and count now?
+        hello world!10
+        10
 
         count = count * 10;
         tweet = count + tweet;
 
         // what is the value of tweet and count now?
+        100hello world!10
+        100
 
         count = count * 100;
         tweet = tweet + ". this is another sentence.";
 
         // what is the value of tweet and count now?
+        100hello world!10. this is another sentence.
+        10000
