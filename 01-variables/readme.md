@@ -177,14 +177,14 @@ you've put where.
 
 ### Practice
 
-1) What happens when you print out the value of a variable that you have
+[1] What happens when you print out the value of a variable that you have
 declared but you didn't define?
 ```
     > var declared
     > console.log(declared)
     undefined
 ```
-2) Identifiers have some pretty specific rules in JavaScript. Experiment with
+[2] Identifiers have some pretty specific rules in JavaScript. Experiment with
 declaring variables using various symbols other than letters and numbers and see
 when you get a Syntax Error.
 ```
@@ -207,7 +207,7 @@ when you get a Syntax Error.
     > var sdfv(dfv
     VM181:1 Uncaught SyntaxError: Unexpected token (
 ```
-3) Declare and define a variable that stores your name. Using that variable,
+[3] Declare and define a variable that stores your name. Using that variable,
 construct a new variable that represents a greeting by concatentating "Hello" in
 front of your name. For example, we'd want to store the value "Hello Semmy" in a
 variable, where "Semmy" is stored in another variable.
@@ -220,23 +220,23 @@ variable, where "Semmy" is stored in another variable.
       "Hello Vasyl"
 ```
 
-4. Using just the name variable from the previous question, create a more
+[4] Using just the name variable from the previous question, create a more
 complex greeting that looks like "Hello, Semmy!" and store that in a variable.
 ```
       ?
 ```
-5. Create a variable that represents a worker's hourly wage. Create another
+[5] Create a variable that represents a worker's hourly wage. Create another
 variable that represents the number of hours a worker has worked. Store values
 in both of those variables, and create a variable that stores the total wage
 based on the number of hours worked and the hourly wage.
 
-6. We've seen that variables can store strings and numbers. We've also seen that
+[6] We've seen that variables can store strings and numbers. We've also seen that
 when we have two strings the `+` operator means _concatenation_, whereas when we
 have two number variables it represents _addition_. What happens when we mix and
 match number and string variables? Give it a try and do your best to explain
 what you see.
 
-7. In the last example, we ended up with a long decimal number. We'd
+[7] In the last example, we ended up with a long decimal number. We'd
 like to round it off, but we don't know how to do that. The _Mozilla
 Developer Network_ has excellent JavaScript documentation, and there
 is a special _function_ called `Math.round` that will help us do
@@ -246,7 +246,7 @@ If you're feeling very brave, give it a try! You can round dollar amounts to two
 decimal places by first multiplying by 100, then rounding the nearest integer,
 then dividing by 100. You can divide by using the `/` operator.
 
-8. You may have seen HTML in the past, but in case you haven't, a paragraph tag
+[8] You may have seen HTML in the past, but in case you haven't, a paragraph tag
 in HTML looks like this:
 
         <p>This is a paragraph!</p>
@@ -257,7 +257,7 @@ it to construct a new value that represents this snippet of HTML by
 concatenating an opening `<p>` tag to the front, and a closing `</p>` tag to the
 back.
 
-9. Consider the following sequence of variable assignments.
+[9] Consider the following sequence of variable assignments.
 
         var tweet = "hello world!";
         var count = 0;
