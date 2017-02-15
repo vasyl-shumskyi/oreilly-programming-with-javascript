@@ -180,17 +180,50 @@ you've put where.
 1. What happens when you print out the value of a variable that you have
 declared but you didn't define?
 
+    > var declared
+    > console.log(declared)
+    undefined
+
 2. Identifiers have some pretty specific rules in JavaScript. Experiment with
 declaring variables using various symbols other than letters and numbers and see
 when you get a Syntax Error.
+
+    > var jkns!
+    VM125:1 Uncaught SyntaxError: Unexpected token !
+    > var jkns!23
+    VM127:1 Uncaught SyntaxError: Unexpected token !
+    > var jkns!@
+    VM131:1 Uncaught SyntaxError: Unexpected token !
+    > var jkns@
+    VM137:1 Uncaught SyntaxError: Invalid or unexpected token
+    > var jkns@sv
+    VM143:1 Uncaught SyntaxError: Invalid or unexpected token
+    > var jkns@svsd
+    VM149:1 Uncaught SyntaxError: Invalid or unexpected token
+    > var jkns#svsd
+    VM154:1 Uncaught SyntaxError: Invalid or unexpected token
+    > var jkns%svsd
+    VM159:1 Uncaught SyntaxError: Unexpected token %
+    > var sdfv(dfv
+    VM181:1 Uncaught SyntaxError: Unexpected token (
 
 3. Declare and define a variable that stores your name. Using that variable,
 construct a new variable that represents a greeting by concatentating "Hello" in
 front of your name. For example, we'd want to store the value "Hello Semmy" in a
 variable, where "Semmy" is stored in another variable.
 
+      > name = 'Vasyl';
+      "Vasyl"
+      > greeting = 'Hello ' + name;
+      "Hello Vasyl"
+      > console.log(greeting);
+      "Hello Vasyl"
+
+
 4. Using just the name variable from the previous question, create a more
 complex greeting that looks like "Hello, Semmy!" and store that in a variable.
+
+      ?
 
 5. Create a variable that represents a worker's hourly wage. Create another
 variable that represents the number of hours a worker has worked. Store values
