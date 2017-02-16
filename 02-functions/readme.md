@@ -185,6 +185,11 @@ console](https://developer.chrome.com/devtools/docs/console), write a
 function that takes a rank and a suit as input, and returns a string
 representation of a card. Use it to print out a few cards with various suits
 and ranks.
+```
+var rankSuit = function(rank, suit) {
+  return rank + ' of ' + suit
+};
+```
 
 2. We described a function called `addThree` that accepts three numbers and
 returns their sum. Write that function again in the Chrome console. What
@@ -192,7 +197,19 @@ happens when you call that function with strings instead of numbers? What
 happens if some of the values are numbers and some are strings? Try various
 approaches and explain what is happening.
 
+```
+var addThree = function(a, b, c) {
+  return a + b + c
+};
+--------
+> addThree(1,2,3)
+6
+> addThree(1,'aaa',2)
+"1aaa2"
+> addThree(1,2,'aaa')
+"3aaa"
+> addThree('aaa','bbb','ccc')
+"aaabbbccc"
+```
+
 The remainder of the practice problems can be found in the `practice.js` file.
-
-
-
