@@ -68,5 +68,5 @@ var closeTag = function (closeTag) {
 // Although I won't be testing for this, your code should re-use the functions that
 // you created in the previous section.
 var toTagString = function (tag, item) {
-  return '<' + tag + '>' + item + '</' + tag + '>';
+  return openTag(tag) + item + closeTag(tag);
 };
