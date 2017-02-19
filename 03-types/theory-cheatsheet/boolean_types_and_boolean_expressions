@@ -1,0 +1,81 @@
+var isACard = true;
+undefined
+typeof isACard
+"boolean"
+console.log(isACard)
+VM803:1 true
+undefined
+var isATweet = false;
+undefined
+typeof isAT
+"undefined"
+typeof isAT	
+"undefined"
+typeof isATweet
+"boolean"
+typeof true
+"boolean"
+typeof false
+"boolean"
+5 < 7
+true
+var fiveLessThanSeven = 5 < 7
+undefined
+typeof fiveLessThanSeven
+"boolean"
+typeof 5<7
+false
+typeof (5 < 7)
+"boolean"
+(typeof 5 ) < 7
+false
+// that's how javascript associating it
+undefined
+number < 7
+VM1048:1 Uncaught ReferenceError: number is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM1048:1
+5 === 7
+false
+5 === 5
+true
+5 !== 5
+false
+5 !== 7
+true
+5 <= 7
+true
+5 <= 4
+false
+5 >= 7
+false
+5 => 7
+VM1076:1 Uncaught SyntaxError: Unexpected number
+"zebra" < "aardvark"
+false
+"zebra" > "aardvark"
+true
+"zzzzzz" > "aaaaaa"
+true
+"zzzzzz" < "aaaaaa"
+false
+"Zzzzzz" < "aaaaaa"
+true
+"A" < "a"
+true
+"A" > "a"
+false
+"Z" < "a"
+true
+"Z" > "a"
+false
+"a" < "a"
+false
+"a" === "a"
+true
+"a" === "aaa"
+false
+"a" < "aaa"
+true
+"a" > "aaa"
+false

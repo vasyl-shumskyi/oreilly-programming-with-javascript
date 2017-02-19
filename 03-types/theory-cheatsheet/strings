@@ -1,0 +1,93 @@
+var greeting = "Hello!"
+undefined
+greeting.toUpperCase()
+"HELLO!"
+greeting.toLocaleLowerCase()
+"hello!"
+greeting.toLowerCase()
+"hello!"
+"hello".toUpperCase()
+"HELLO"
+var tweet = "hello world!";
+        var count = 0;
+
+        count = count + 10;
+        tweet = tweet + count;
+"hello world!10"
+var tweet = "hello this is a tweet lol"
+undefined
+console.log(tweet)
+VM230:1 hello this is a tweet lol
+undefined
+tweet.indexOf("tweet")
+16
+tweet.indexOf("hello")
+0
+tweet.indexOf("hellol")
+-1
+tweet
+"hello this is a tweet lol"
+tweet.slice(16)
+"tweet lol"
+tweet.slice(16,17)
+"t"
+tweet.slice(16,16)
+""
+tweet.slice(17,17)
+""
+tweet.slice(17,18)
+"w"
+tweet.slice(17,21)
+"weet"
+tweet.slice(16,21)
+"tweet"
+tweet.length
+25
+"hello world".lenght
+undefined
+"hello world".length
+11
+tweet.charAt(0)
+"h"
+tweet.charAt(12)
+"s"
+tweet.charAt(2)
+"l"
+tweet.charAt(-1)
+""
+tweet.charAt(-2)
+""
+tweet.length
+25
+tweet.charAt(25)
+""
+tweet.charAt(24)
+"l"
+tweet.charAt(23)
+"o"
+tweet.charAt(tweet.length - 1)
+"l"
+tweet.slice(10).toUpperCase()
+" IS A TWEET LOL"
+tweet.slice(10).toUpperCase().slice(3)
+" A TWEET LOL"
+tweet.slice(10).toUpperCase().slice(3).toLowerCase()
+" a tweet lol"
+tweet.length
+25
+tweet.length()
+VM570:1 Uncaught TypeError: tweet.length is not a function
+    at <anonymous>:1:7
+(anonymous) @ VM570:1
+// Write an expression that prints out the last 3 letters of a string in all uppercase
+undefined
+slice("aa bbb ccccd".length - 4).toUpperCase()
+VM649:1 Uncaught ReferenceError: slice is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM649:1
+string = "aa bbb ccccd"
+"aa bbb ccccd"
+string.slice(string.length - 4).toUpperCase()
+"CCCD"
+string.slice(string.length - 3).toUpperCase()
+"CCD"

@@ -1,0 +1,21 @@
+var addThree = function(a, b, c) {
+  return a + b + c;
+};
+
+addThree("hello",10,20)
+"hello1020" // 1020
+addThree(10,20, "hello")
+"30hello" // 30
+
+> typeof 5
+"number"
+> typeof "5"
+"string"
+> typeof addThree(5,10,20)
+"number"
+> typeof addThree(5, 10, "aaa")
+"string"
+> typeof addThree('bbb', 5, 10)
+"string"
+> typeof addThree
+"function"

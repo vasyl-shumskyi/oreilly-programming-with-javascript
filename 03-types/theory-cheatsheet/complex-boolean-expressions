@@ -1,0 +1,101 @@
+var age = 25
+undefined
+age > 0
+true
+age < 18
+false
+0 < age && age <= 18
+false
+age = 15
+15
+0 < age && age <= 18
+true
+ var message = "hello"
+undefined
+typeof "hello"
+"string"
+typeof message === "string"
+true
+typeof message === "number"
+false
+typeof message === "string" || typeof message === "number"
+true
+ message = 5
+5
+typeof message === "string" || typeof message === "number"
+true
+message = false
+false
+typeof message === "string" || typeof message === "number"
+false
+message = true
+true
+typeof message === "string" || typeof message === "number"
+false
+ message = function
+ (){}
+function (){}
+typeof message === "string" || typeof message === "number"
+false
+false || true
+true
+!true
+false
+!false
+true
+message
+function (){}
+!(typeof message === "string" || typeof message === "number")
+true
+tweet = 'sdfvs sdfvsfd sdf sd f'
+"sdfvs sdfvsfd sdf sd f"
+typeof tweet === string
+false
+typeof tweet === 'string'
+true
+!(typeof tweet === 'string')
+false
+index = tweet.indexOf("lol")
+-1
+tweet = 'sfdv sdf lol sfv sdfv sdfv'
+"sfdv sdf lol sfv sdfv sdfv"
+index = tweet.indexOf("lol")
+9
+typeof tweet === 'string' && index !== -1
+true
+tweetLenght = tweet.length
+26
+typeof tweet === 'string' && tweetLength <= 140
+VM1660:1 Uncaught ReferenceError: tweetLength is not defined
+    at <anonymous>:1:30
+(anonymous) @ VM1660:1
+typeof tweet === 'string' && tweetLenght <= 140
+true
+tweet = "jsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvkjsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvkjsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvkjsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvkjsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvkjsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvk"
+"jsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvkjsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvkjsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvkjsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvkjsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvkjsdfnkvsnfdk ksfdnvks nskjfnvksfjdnvk"
+typeof tweet === 'string' && tweetLenght <= 140
+true
+tweet.length
+222
+tweetLenght = tweet.length
+222
+typeof tweet === 'string' && tweetLenght <= 140
+false
+tweetLenght <= 140 && tweet.indexOf("lol") > -1
+false
+tweet = 'sfdvs sdf sdfvsf v lol sfvsdfv lol'
+"sfdvs sdf sdfvsf v lol sfvsdfv lol"
+tweetLenght <= 140 && tweet.indexOf("lol") > -1
+false
+tweet.lenght <= 140 && tweet.indexOf("lol") > -1
+false
+tweet.length <= 140 && tweet.indexOf("lol") > -1
+true
+tweet = 'sfdvs sdf sdfvsf v lol sfvsdfv lo'
+"sfdvs sdf sdfvsf v lol sfvsdfv lo"
+tweet.length <= 140 && tweet.indexOf("lol") > -1
+true
+tweet = 'sfdvs sdf sdfvsf v ll sfvsdfv lo'
+"sfdvs sdf sdfvsf v ll sfvsdfv lo"
+tweet.length <= 140 && tweet.indexOf("lol") > -1
+false
