@@ -1,6 +1,7 @@
 // Write a function called isDivisibleBy3 which returns `true` if a number is
 // divisible by 3, and `false` otherwise.
-var isDivisibleBy3 = function () {
+var isDivisibleBy3 = function (number) {
+  return number % 3 === 0;
 };
 
 
@@ -10,10 +11,12 @@ var isDivisibleBy3 = function () {
 // convert the other way, you subtract 32, and then multiply by
 // 5. Finally, you divide by 9. The division operator in JavaScript is
 // `/`.
-var celsToFahr = function () {
+var celsToFahr = function (celsius) {
+  return celsius * 9 / 5 + 32;
 };
 
-var fahrToCels = function () {
+var fahrToCels = function (fahrenheit) {
+  return ( fahrenheit - 32 ) * 5 / 9;
 };
 
 
@@ -31,13 +34,17 @@ var fahrToCels = function () {
 //
 //     randUpTo(1000);
 //     //=> 236
-var randUpTo = function () {
+var randUpTo = function (number) {
+    return Math.floor( Math.random() * number );
 };
 
 
 // Write a function called `randBetween` that accepts two numbers representing a
 // range and returns a random whole number between those two numbers.
-var randBetween = function () {
+var randBetween = function (start, end) {
+
+  return Math.random() * (end - start); // !!
+
 };
 
 
@@ -56,7 +63,17 @@ var randBetween = function () {
 //
 //     isSuit("coins");
 //     //=> false
-var isSuit = function () {
+var isSuit = function (suit) {
+
+  var suitLower = suit.toLowerCase()
+
+  var tf =  suitLower === 'clubs'     ||
+            suitLower === 'diamonds'  ||
+            suitLower === 'hearts'    ||
+            suitLower === 'spades';
+
+  return tf;
+
 };
 
 
@@ -72,14 +89,34 @@ var isSuit = function () {
 //
 //     isRank("one");
 //     //=> false
-var isRank = function () {
+var isRank = function (rank) {
+
+  var rankLower = rank.toLowerCase()
+
+  var tf =  rankLower === 'two'     ||
+            rankLower === 'three'   ||
+            rankLower === 'four'    ||
+            rankLower === 'five'    ||
+            rankLower === 'six'     ||
+            rankLower === 'seven'   ||
+            rankLower === 'eight'   ||
+            rankLower === 'nine'    ||
+            rankLower === 'ten'     ||
+            rankLower === 'jack'    ||
+            rankLower === 'queen'   ||
+            rankLower === 'king'    ||
+            rankLower === 'ace';
+
+  return tf;
+
 };
 
 
 // Using the previous two functions, write a function called isCard that accepts
 // two arguments, a rank and a suit, and returns true if they are valid for a card,
 // and false otherwise.
-var isCard = function () {
+var isCard = function (rank, suit) {
+  return isRank(rank) && isSuit(suit);
 };
 
 
@@ -88,7 +125,10 @@ var isCard = function () {
 // Remember that you can use strings in comparisons in the same way that you can
 // use numbers, and the ordering is alphabetical (with capital letters having lower
 // values than their lower-case counterparts).
-var isCapitalized = function () {
+var isCapitalized = function (string) {
+  var firstLetter = string.slice(0,1);
+  var firstLetterUpper = firstLetter.toUpperCase();
+  return firstLetter === firstLetterUpper && string.length > 0;  // string.length > 0 !
 };
 
 
@@ -101,7 +141,14 @@ var isCapitalized = function () {
 //
 //     getHTMLText("<li>this is a list item</li>");
 //     //=> this is a list item
-var getHTMLText = function () {
+var getHTMLText = function (htmltext) {
+
+  var openedTagIndex = htmltext.indexOf(">");
+  var sliceOpenedTag = htmltext.slice(openedTagIndex + 1);
+  var closedTagIndex = sliceOpenedTag.indexOf("<");
+  var sliceClosedTag = sliceOpenedTag.slice(0, closedTagIndex);
+
+  return sliceClosedTag;
 };
 
 
@@ -122,5 +169,14 @@ var getHTMLText = function () {
 //
 // It may help in this case to look up the `lastIndexOf` method on the string
 // objects.
-var isHTMLElement = function () {
+var isHTMLElement = function (htmltext) {
+
+  var untaggedText = getHTMLText(htmltext);
+
+  var openingTagIndex = htmltext.indexOf(">");
+  var openingTag = htmltext.slice(1, openingTagIndex);
+  //var closingTagIndex = htmltext.lastIndexOf(openingTag);
+  var constructedHtml = '<' + openingTag + '>' + untaggedText + '</' + openingTag + '>'
+
+  return constructedHtml === htmltext;
 };
