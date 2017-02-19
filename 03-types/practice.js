@@ -41,10 +41,10 @@ var randUpTo = function (number) {
 
 // Write a function called `randBetween` that accepts two numbers representing a
 // range and returns a random whole number between those two numbers.
+
+// fixed
 var randBetween = function (start, end) {
-
-  return Math.random() * (end - start); // !!
-
+  return Math.random() * (end - start) + start; // !!
 };
 
 
@@ -131,6 +131,11 @@ var isCapitalized = function (string) {
   return firstLetter === firstLetterUpper && string.length > 0;  // string.length > 0 !
 };
 
+// nicer solution
+var isCapitalized2 = function (str) {
+    return "A" <= str.charAt(0) && str.charAt(0) <= "Z";
+};
+
 
 // Write a function that accepts a string representation of an HTML element (it
 // can't have nested HTML elements) and returns the string contained inside. For
@@ -151,6 +156,10 @@ var getHTMLText = function (htmltext) {
   return sliceClosedTag;
 };
 
+// nicer solution
+var getHTMLText2 = function (elt) {
+    return elt.substring(elt.indexOf(">")+1, elt.lastIndexOf("</"));
+};
 
 // Write a function that determines if a string represents an HTML element. This
 // means it has to start with an opening HTML tag and end with a closing HTML tag.
@@ -179,4 +188,12 @@ var isHTMLElement = function (htmltext) {
   var constructedHtml = '<' + openingTag + '>' + untaggedText + '</' + openingTag + '>'
 
   return constructedHtml === htmltext;
+};
+
+
+// with lastIndexOf
+var isHTMLElement2 = function (str) {
+    var openTag = str.substring(str.indexOf("<") + 1, str.indexOf(">"));
+    var closeTag = str.substring(str.lastIndexOf("</") + 2, str.lastIndexOf(">"));
+    return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && openTag === closeTag;
 };
