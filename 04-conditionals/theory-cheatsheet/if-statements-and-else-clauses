@@ -1,0 +1,161 @@
+var yellingTweet = "'M YELLING"
+undefined
+var normalTweet = "I'm talking in a normal tone"
+undefined
+if (yellingTweet.toUpperCase() === yellingTweet) {
+	console.log("Please stop yelling");
+}
+VM180:2 Please stop yelling
+undefined
+yellingTweet.toUpperCase() === yellingTweet
+true
+normalTweet.toUpperCase() === normalTweet
+false
+if (normalTweet.toUpperCase() === normalTweet) {
+	console.log("Please stop yelling");
+}
+undefined
+if (5 < 7) { console.log("YAY!")}
+VM349:1 YAY!
+undefined
+if (5 === 7) { console.log("YAY!")}
+undefined
+if (5 === 7) { 
+	console.log("YAY!")
+} else {
+	console.log("BOO!");
+}
+VM387:4 BOO!
+undefined
+var goodTweet = "This is a good tweet"
+undefined
+var badTweet = "This is a bad tweet"
+undefined
+if ( goodTweet.indexOf("good") > -1 ) {
+	console.log(goodTweet)
+} else {
+	console.log("tweet is NOT good")
+}
+VM552:2 This is a good tweet
+undefined
+if ( badTweet.indexOf("good") > -1 ) {
+	console.log(goodTweet)
+} else {
+	console.log("tweet is NOT good")
+}
+VM569:4 tweet is NOT good
+undefined
+var questionMark = "Who am I?"
+undefined
+var noQuestionMark = "I am"
+undefined
+if (questionMark.lastIndexOf("?") > -1) {
+	console.log("yes")
+} else {
+	console.log("that's not a question")
+}
+VM722:2 yes
+undefined
+if (noQuestionMark.lastIndexOf("?") > -1) {
+	console.log("yes")
+} else {
+	console.log("that's not a question")
+}
+VM731:4 that's not a question
+undefined
+firstString = "aaa bbb cccc"
+"aaa bbb cccc"
+secondString = "zzz xxx yyy"
+"zzz xxx yyy"
+if (firstString > secondString) {
+	console.log(secondString)
+} else {
+	console.log(firstString)
+}
+
+VM918:4 aaa bbb cccc
+undefined
+if (firstString > secondString) {
+	console.log(secondString)
+} else {
+	console.log(firstString)
+}
+
+VM919:4 aaa bbb cccc
+undefined
+if (firstString < secondString) {
+	console.log(secondString)
+} else {
+	console.log(firstString)
+}
+
+VM924:2 zzz xxx yyy
+undefined
+if (noQuestionMark.charAt(noQuestionMark.length - 1)  === "?") {
+	console.log("yes")
+} else {
+	console.log("that's not a question")
+}
+VM1039:4 that's not a question
+undefined
+if (QuestionMark.charAt(noQuestionMark.length - 1)  === "?") {
+	console.log("yes")
+} else {
+	console.log("that's not a question")
+}
+VM1044:1 Uncaught ReferenceError: QuestionMark is not defined
+    at <anonymous>:1:5
+(anonymous) @ VM1044:1
+if (wuestionMark.charAt(noQuestionMark.length - 1)  === "?") {
+	console.log("yes")
+} else {
+	console.log("that's not a question")
+}
+VM1049:1 Uncaught ReferenceError: wuestionMark is not defined
+    at <anonymous>:1:5
+(anonymous) @ VM1049:1
+if (questionMark.charAt(noQuestionMark.length - 1)  === "?") {
+	console.log("yes")
+} else {
+	console.log("that's not a question")
+}
+VM1058:4 that's not a question
+undefined
+if (questionMark.charAt(questionMark.length - 1)  === "?") {
+	console.log("yes")
+} else {
+	console.log("that's not a question")
+}
+VM1067:2 yes
+undefined
+firstString = "zzzz"
+"zzzz"
+secondString = "aaa"
+"aaa"
+if (firstString < secondString) {
+	console.log(secondString)
+} else {
+	console.log(firstString)
+}
+
+VM1118:4 zzzz
+undefined
+if (firstString > secondString) {
+	console.log(secondString)
+} else {
+	console.log(firstString)
+}
+
+VM1127:2 aaa
+undefined
+firstString = "aaa"
+"aaa"
+secondString = "zzzz"
+"zzzz"
+if (firstString > secondString) {
+	console.log(secondString)
+} else {
+	console.log(firstString)
+}
+
+VM1130:4 aaa
