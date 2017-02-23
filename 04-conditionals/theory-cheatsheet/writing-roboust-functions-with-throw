@@ -1,0 +1,48 @@
+var addThree = function (a,b,c){
+	return a+b+c;
+}
+undefined
+addThree(1,2,3)
+6
+addThree(10,20,30)
+60
+addThree(10,15)
+NaN
+addThree(10,15, "helloworld")
+"25helloworld"
+addThree(10, "helloworld", 15)
+"10helloworld15"
+addThree("helloworld", 15,20)
+"helloworld1520"
+var isNumber = function (value) {
+	return typeof value === "number";
+}
+undefined
+isNumber("string")
+false
+isNumber(2)
+true
+isNumber(2.242341)
+true
+var addThree = function (a,b,c) {
+	if (!isNumber(a) || !isNumber(b) || !isNumber(c)) {
+		throw 'ALL INPUTS TO ADDTHREE MUST BE NUMBERS!!!';
+	}
+
+	return a+b+c;
+}
+undefined
+addThree("helloworld", 15,20)
+VM430:3 Uncaught ALL INPUTS TO ADDTHREE MUST BE NUMBERS!!!
+addThree @ VM430:3
+(anonymous) @ VM432:1
+addThree("helloworld", 15,20)
+VM430:3 Uncaught ALL INPUTS TO ADDTHREE MUST BE NUMBERS!!!
+addThree @ VM430:3
+(anonymous) @ VM460:1
+addThree(10, 15,20)
+45
+addThree(10, 15,'20')
+VM430:3 Uncaught ALL INPUTS TO ADDTHREE MUST BE NUMBERS!!!
+addThree @ VM430:3
+(anonymous) @ VM478:1
