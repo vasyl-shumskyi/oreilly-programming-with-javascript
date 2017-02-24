@@ -81,7 +81,22 @@ var isLeapYear = function (year) {
 //
 //      firstInDictionary("whale", 5, 10);
 //      //=> ALL THREE ARGS MUST BE STRINGS!
-var firstInDictionary = function () {
+var firstInDictionary = function (string1, string2, string3) {
+
+  if (  typeof string1 !== "string" ||
+        typeof string2 !== "string" ||
+        typeof string3 !== "string"
+      )
+  {
+        throw "ALL THREE ARGS MUST BE STRINGS!";
+  }
+
+  if (string1 <= string2 && string1 <= string3) {
+    return string1;
+  } else if (string2 <= string1 && string2 <= string3) {
+    return string2;
+  } else return string3;
+
 };
 
 
@@ -95,20 +110,57 @@ var firstInDictionary = function () {
 //
 //     getTagName("<p>this is wrong</div>");
 //     //=> Error: Not an HTML Element!
-var getTagName = function () {
+var getTagName = function (html) {
+
+  var openTag = html.slice( 1, html.indexOf(">") )
+  var closeTag = html.slice( html.indexOf("/") + 1, html.length - 1 )
+
+  if (openTag !== closeTag) {
+    throw "Error: Not an HTML Element!"
+  }
+
+  return openTag;
+
 };
 
 
 // Re-implement our improveTweet function so it can generate any of lol, omg,
 // lmao, and rofl.
-var improveTweet = function () {
+var improveTweet = function (tweet) {
+
+  var word;
+  var result;
+
+  n = Math.ceil(Math.random() * 4)
+
+  if      (n === 1)   { word = " lol";  }
+  else if (n === 2)   { word = " omg";  }
+  else if (n === 3)   { word = " lmao"; }
+  else if (n === 4)   { word = " rofl"; }
+
+ if (tweet.indexOf(word) === -1) {
+   result = tweet + word;
+ } else {
+   result = tweet;
+ }
+
+ return result;
+
 };
+
 
 
 // Write a function called `isQuestion` that returns true if the input is a
 // string and it ends in a question mark. We'll use this function in the next
 // practice problem.
-var isQuestion = function () {
+var isQuestion = function (sentence) {
+
+  if (sentence.charAt(sentence.length - 1) === "?") {
+    return true;
+  } else {
+    return false;
+  }
+
 };
 
 
@@ -135,7 +187,20 @@ var isQuestion = function () {
 //
 //     magic8Ball("Is this a question?");
 //     //=> Signs point to yes
-var magic8Ball = function () {
+var magic8Ball = function (question) {
+
+  if (!isQuestion(question)) {
+    throw "THAT DOESN'T SOUND LIKE A QUESTION!"
+  }
+
+  n = Math.ceil(Math.random() * 3);
+
+  if        ( n === 1 )   { answer = "yes"      }
+  else if   ( n === 2 )   { answer = "no"       }
+  else if   ( n === 3 )   { answer = "doubtful" }
+
+  return answer;
+
 };
 
 
@@ -175,13 +240,51 @@ var magic8Ball = function () {
 //     var strWithInterjection = beginning + "-lol-" + end;
 //
 // You just have to generalize this to an arbitrary index and wrap it in a function.
-var interjectAt = function () {
+
+// 1 function solution
+var interjectAt2 = function (string) {
+  var word;
+
+  randomIndex = Math.ceil(Math.random() * (string.length - 1) )
+
+  if (randomIndex % 2 === 0) { word = "-lol-"}
+  else { word = "-omg-"; }
+
+  return string.slice(0, randomIndex) + word + string.slice(randomIndex);
 };
 
+//  2 functions solution
+var interjectAt = function (intergaction, index, string) {
+
+  var result;
+
+  if (typeof intergaction !== "string" || typeof index !== "number" || typeof string !== "string") {
+    throw "expected first arg to be a string, second arg to be a number and third arg to be a string";
+  } else if (index >= string.length) {
+    throw "the string doesn't have that many letters!";
+  }
+
+  return string.slice(0, index) + '-' + intergaction + '-' + string.slice(index);
+
+}
 
 // Now that you have a robust function to do your interjection, your actual
 // `randomInterjection` function consists of generating a random message and a
 // random location within the string, and then calling into the `interjectAt`
 // function with the appropriate arguments.
-var randomInterject = function () {
+var randomInterject = function (inputStr) {
+
+  var word;
+
+  if (typeof inputStr !== "string") {
+    throw "Input should be a string!"
+  }
+
+  var randomIndex = Math.floor(Math.random() * (inputStr.length - 1))
+
+  if (randomIndex % 2 === 0) { word = "-lol-" }
+  else { word = "-omg-" }
+
+  return interjectAt(word, randomIndex, inputStr)
+
 };
