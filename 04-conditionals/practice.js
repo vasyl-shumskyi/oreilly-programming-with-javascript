@@ -184,6 +184,11 @@ var firstInDictionary = function (string1, string2, string3) {
 };
 
 //////////////////////////////////////
+var isString = function (val) {
+    return typeof val === "string";
+};
+
+
 var firstInDictionary2 = function (a, b, c) {
     if (!isString(a) || !isString(b) || !isString(c)) {
         throw "ALL THREE ARGS MUST BE STRINGS!";
@@ -223,6 +228,13 @@ var getTagName = function (html) {
 };
 
 ///////////////////////////
+var isHTMLElement = function (str) {
+    var openTag = str.substring(str.indexOf("<") + 1, str.indexOf(">"));
+    var closeTag = str.substring(str.lastIndexOf("</") + 2, str.lastIndexOf(">"));
+    return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && openTag === closeTag;
+};
+
+
 var getTagName = function (elt) {
     if (!isHTMLElement(elt)) {
         throw "Error: Not an HTML Element!";
@@ -245,9 +257,9 @@ var improveTweet = function (tweet) {
   if      (n === 1)   { word = " lol";  }
   else if (n === 2)   { word = " omg";  }
   else if (n === 3)   { word = " lmao"; }
-  else                { word = " rofl"; }   // no need to be specific about (n === 4)
+  else                { word = " rofl"; }           // ! no need to be specific about (n === 4), generating it is enough
 
- if (tweet.toLowerCase().indexOf(word) === -1) {
+ if (tweet.toLowerCase().indexOf(word) === -1) {    // ! ignore case
    result = tweet + word;
  } else {
    result = tweet;
@@ -259,6 +271,10 @@ var improveTweet = function (tweet) {
 
 
 ////////////////////////////////
+var randUpTo = function (n) {
+    return Math.floor(Math.random() * n);
+};
+
 var improveTweet = function (tweet) {
     // generate either 0, 1, 2, or 3 using the randUpTo function defined above
     var random = randUpTo(4);
@@ -298,6 +314,11 @@ var isQuestion = function (sentence) {
 };
 
 /////////////////////
+var isString = function (val) {
+    return typeof val === "string";
+};
+
+
 var isQuestion2 = function (sentence) {
     // this uses the helper isString function which you can find above
     return isString(sentence) && sentence.charAt(sentence.length - 1) === "?";
@@ -345,6 +366,11 @@ var magic8Ball = function (question) {
 };
 
 ///////////////////
+var randUpTo = function (n) {
+    return Math.floor(Math.random() * n);
+};
+
+
 var magic8Ball2 = function (question) {
     if (!isQuestion(question)) {
         throw "THAT DOESN'T SOUND LIKE A QUESTION!";
@@ -438,6 +464,11 @@ var interjectAt = function (intergaction, index, string) {
 }
 
 ///////////////////
+var isString = function (val) {
+    return typeof val === "string";
+};
+
+
 var interjectAt3 = function (interjection, index, tweet) {
     if (!isString(interjection) || typeof index !== "number" || !isString(tweet)) {
         throw "expected first arg to be a string, second arg to be a number and third arg to be a string";
@@ -474,6 +505,11 @@ var randomInterject = function (inputStr) {
 
 
 //////////////////////////
+var isString = function (val) {
+    return typeof val === "string";
+};
+
+
 var randomInterject2 = function (tweet) {
     if (!isString(tweet)) {
         throw "the input should be a string!";
