@@ -17,7 +17,27 @@
 //    isVowel("Y");
 //    //=> false
 //
-var isVowel = function () {
+var isVowel = function (letter) {
+
+  var result;
+
+  if (typeof letter === "string" && letter.length === 1) {
+
+        if (letter.toLowerCase() === 'a' ||
+            letter.toLowerCase() === 'e' ||
+            letter.toLowerCase() === 'i' ||
+            letter.toLowerCase() === 'o' ||
+            letter.toLowerCase() === 'u') {
+            result = true;
+        } else {
+          result = false;
+        };
+
+  } else {
+    result = false;
+  };
+
+  return result;
 };
 
 
@@ -39,7 +59,21 @@ var isVowel = function () {
 //    isLowerCaseLetter(true);
 //    //=> false
 //
-var isLowerCaseLetter = function () {
+var isLowerCaseLetter = function (letter) {
+
+  var result;
+
+  if (typeof letter === "string" &&
+      letter >= "a" && letter <= "z" &&
+      letter.length === 1) {
+
+    result = true;
+
+  } else {
+    result = false;
+  };2
+
+  return result;
 };
 
 
@@ -59,7 +93,21 @@ var isLowerCaseLetter = function () {
 //     sumUpTo(-10);
 //     //=> input must be a zero or a positive number!
 //
-var sumUpTo = function () {
+var sumUpTo = function (number) {
+
+  var n;
+  var sum = 0;
+
+  if ( number < 0 ) {
+    throw "input must be a zero or a positive number!";
+  }
+
+  for ( n = 1; n <= number; n = n + 1 ) {
+    sum = sum + n;
+  }
+
+  return sum;
+
 };
 
 
@@ -82,7 +130,24 @@ var sumUpTo = function () {
 //     sumAToB("hello", "world");
 //     //=> inputs should be numbers!
 //
-var sumAToB = function () {
+var sumAToB = function (numA, numB) {
+
+  var sum = 0;
+  var n;
+
+  if ( typeof numA !== "number" || typeof numB !== "number" ) {
+    throw "inputs should be numbers!";
+  }
+
+  var max = Math.max(numA, numB);
+  var min = Math.min(numA, numB);
+
+  for ( n = min; n <= max; n = n + 1 ) {
+    sum = sum + n;
+  };
+
+  return sum;
+
 };
 
 
@@ -103,7 +168,23 @@ var sumAToB = function () {
 //     countVowels(true);
 //     //=> input to countVowels must be a string!
 //
-var countVowels = function () {
+var countVowels = function (string) {
+
+  if ( typeof string !== "string" ) {
+    throw "input to countVowels must be a string!";
+  }
+
+  var index;
+  var count = 0;
+
+  for ( index = 0; index <= string.length; index = index + 1 ) {
+
+    if ( isVowel(string.charAt(index)) ) {
+        count = count + 1;
+    }
+  }
+
+  return count;
 };
 
 
@@ -122,7 +203,21 @@ var countVowels = function () {
 //     reverse(true);
 //     //=> input to reverseString must be an string!
 //
-var reverseString = function () {
+var reverseString = function (string) {
+
+  if (typeof string !== "string") {
+    throw "input should be a string!"
+  }
+
+  var index;
+  var result = '';
+
+  for ( index = string.length - 1; index >= 0; index = index - 1 ) {
+    result = result + string.charAt(index);
+  }
+
+  return result;
+
 };
 
 
@@ -149,7 +244,28 @@ var reverseString = function () {
 //     isPrime(-101);
 //     //=> false
 //
-var isPrime = function () {
+var isPrime = function (number) {
+
+  var result = false;
+  var divisorCount = 0;
+  var n;
+
+  if ( typeof number === "number" && number > 1) {
+
+      for ( n = 1; n <= number && divisorCount <= 2; n = n + 1 ) {
+        if ( number % n === 0 ) {
+          divisorCount = divisorCount + 1;
+        };
+      };
+
+      if (n === number + 1 && divisorCount === 2) {
+        result = true;
+      };
+
+  };
+
+//console.log(n, number, divisorCount);
+  return result;
 };
 
 
@@ -171,7 +287,25 @@ var isPrime = function () {
 //     sumPrimesUpTo("whatever");
 //     //=> input should be a number
 //
-var sumPrimesUpTo = function () {
+var sumPrimesUpTo = function (number) {
+
+  if (typeof number !== "number" || number < 0) {
+    throw "input should be a positive number";
+  }
+
+  var sum = 0;
+  var n;
+
+  for (n = 0; n <= number; n = n + 1) {
+    if ( isPrime(n) ) {
+//    console.log(n);
+      sum = sum + n;
+    };
+
+  }
+
+  return sum;
+
 };
 
 
@@ -196,7 +330,25 @@ var sumPrimesUpTo = function () {
 //     sumOfFirstNPrimes(-10);
 //     //=> input number should be zero or a positive number!
 //
-var sumOfFirstNPrimes = function () {
+var sumOfFirstNPrimes = function (number) {
+
+  if (typeof number !== "number" || number < 0) {
+    throw "input number should be zero or a positive number!"
+  }
+
+  var sum = 0;
+  var counter = 1;
+  var n;
+
+  for (n = 0; counter <= number; n = n + 1 ) {
+
+      if ( isPrime(n) ) {
+          sum = sum + n;
+          counter = counter + 1;
+      };
+  };
+
+  return sum;
 };
 
 
