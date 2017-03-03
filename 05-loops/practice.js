@@ -40,6 +40,19 @@ var isVowel = function (letter) {
   return result;
 };
 
+///////////////////////////////////////////////////                       // !!!
+var isVowel2 = function (str) {
+    var result = false;                                                   // !
+    var lcStr;
+
+    if (typeof str === "string" && str.length === 1) {
+        lcStr = str.toLowerCase();
+        result = lcStr === "a" || lcStr === "e" || lcStr === "i" ||       // !!! result =
+                 lcStr === "o" || lcStr === "u";
+    }
+    return result;
+};
+///////////////////////////////////////////////////
 
 // Write a function called `isLowerCaseLetter` that returns `true` if
 // the input is a single letter and lower-case. It should return false otherwise.
@@ -71,10 +84,17 @@ var isLowerCaseLetter = function (letter) {
 
   } else {
     result = false;
-  };2
+  };
 
   return result;
 };
+
+///////////////////////////////////////////////////         !!!
+var isLowerCaseLetter2 = function (str) {
+    return typeof str === "string" && str.length === 1 && "a" <= str && str <= "z";
+};
+///////////////////////////////////////////////////
+
 
 
 // Write a function called `sumUpTo` so that it accepts a positive number `n`
@@ -95,12 +115,12 @@ var isLowerCaseLetter = function (letter) {
 //
 var sumUpTo = function (number) {
 
+  if ( number < 0 ) {                                       // ! && typeof number !== "number"
+    throw "input must be a zero or a positive number!";
+  };
+
   var n;
   var sum = 0;
-
-  if ( number < 0 ) {
-    throw "input must be a zero or a positive number!";
-  }
 
   for ( n = 1; n <= number; n = n + 1 ) {
     sum = sum + n;
@@ -110,6 +130,23 @@ var sumUpTo = function (number) {
 
 };
 
+///////////////////////////////////////////////////
+var sumUpTo2 = function (n) {
+
+    if (typeof n !== "number" || n < 0) {
+        throw "input must be zero or a positive number!";
+    }
+
+    var sum = 0;
+    var currentNumber = 0;
+
+    for (currentNumber = 0; currentNumber <= n; currentNumber = currentNumber + 1) {
+        sum = sum + currentNumber;
+    }
+
+    return sum;
+};
+///////////////////////////////////////////////////
 
 // Write a function called `sumAToB` so that it accepts two parameters
 // `a` and `b` and sums the numbers between `a` and `b` inclusive. Note
@@ -132,12 +169,12 @@ var sumUpTo = function (number) {
 //
 var sumAToB = function (numA, numB) {
 
-  var sum = 0;
-  var n;
-
   if ( typeof numA !== "number" || typeof numB !== "number" ) {
     throw "inputs should be numbers!";
   }
+
+  var sum = 0;
+  var n;
 
   var max = Math.max(numA, numB);
   var min = Math.min(numA, numB);
@@ -150,6 +187,32 @@ var sumAToB = function (numA, numB) {
 
 };
 
+///////////////////////////////////////////////////
+var sumAToB = function (a, b) {
+    if (typeof a !== "number" || typeof b !== "number") {
+        throw "inputs should be numbers!";
+    }
+
+    var sum = 0;
+    var start;
+    var end;
+    var number;
+
+    if (a < b) {
+        start = a;
+        end = b;
+    } else {
+        start = b;
+        end = a;
+    }
+
+    for (number = start; number <= end; number = number + 1) {
+        sum = sum + number;
+    }
+
+    return sum;
+};
+///////////////////////////////////////////////////
 
 // Write a function called `countVowels` that accepts a string and
 // returns the number of vowels contained in that string. You'll want
@@ -177,7 +240,7 @@ var countVowels = function (string) {
   var index;
   var count = 0;
 
-  for ( index = 0; index <= string.length; index = index + 1 ) {
+  for ( index = 0; index < string.length; index = index + 1 ) {      // ! strict <
 
     if ( isVowel(string.charAt(index)) ) {
         count = count + 1;
@@ -187,6 +250,24 @@ var countVowels = function (string) {
   return count;
 };
 
+///////////////////////////////////////////////////
+var countVowels2 = function (str) {
+    if (typeof str !== "string") {
+        throw "input to countVowels must be a string!";
+    }
+
+    var numVowels = 0;
+    var index;
+
+    for (index = 0; index < str.length; index = index + 1) {
+        if (isVowel(str.charAt(index))) {
+            numVowels = numVowels + 1;
+        }
+    }
+
+    return numVowels;
+};
+///////////////////////////////////////////////////
 
 // Write a function that accepts a string and returns the same string, only in
 // reverse!
@@ -220,6 +301,22 @@ var reverseString = function (string) {
 
 };
 
+///////////////////////////////////////////////////
+var reverseString = function (str) {
+    if (typeof str !== "string") {
+        throw "input to reverseString must be an string!";
+    }
+
+    var reversed = "";
+    var index;
+
+    for (index = str.length - 1; index >= 0; index = index - 1) {
+        reversed = reversed + str.charAt(index);
+    }
+
+    return reversed;
+};
+///////////////////////////////////////////////////
 
 // A number is a prime number if it is only evenly divisible by 1 and itself
 // (although we don't consider 1 a prime number, so 2 is the first prime
@@ -268,6 +365,29 @@ var isPrime = function (number) {
   return result;
 };
 
+///////////////////////////////////////////////////               // !!!
+var isPrime2 = function (n) {
+    // assume true until we find evidence to the contrary
+    var result = true;
+    var div;
+
+    if (typeof n !== "number") {
+        result = false;
+    }
+
+    if (n < 2) {
+        result = false;
+    }
+
+    // we'll break out as soon as we find a factor
+    for (div = 2; div < n && result === true; div = div + 1) {    // !!! 'div = 2' and strict '<' allows to check only once and
+        if (n % div === 0) {                                      // !!! exit if additional divisor found in a [ 2 ... number ] range
+            result = false;
+        }
+    }
+    return result;
+};
+///////////////////////////////////////////////////
 
 // Using the `isPrime` function, write a function that accepts a number as
 // input sums all the primes smaller than that number.
@@ -307,6 +427,25 @@ var sumPrimesUpTo = function (number) {
   return sum;
 
 };
+
+///////////////////////////////////////////////////
+var sumPrimesUpTo = function (n) {
+    if (typeof n !== "number") {
+        throw "input should be a number";
+    }
+
+    var sum = 0;
+    var number;
+
+    for (number = 0; number <= n; number = number + 1) {
+        if (isPrime(number)) {
+            sum = sum + number;
+        }
+    };
+
+    return sum;
+};
+///////////////////////////////////////////////////
 
 
 // Using the `isPrime` function, write a function that takes in a
@@ -351,6 +490,26 @@ var sumOfFirstNPrimes = function (number) {
   return sum;
 };
 
+///////////////////////////////////////////////////
+var sumOfFirstNPrimes2 = function (n) {
+    if (typeof n !== "number" || n < 0) {
+        throw "input number should be zero or a positive number!";
+    }
+
+    var primeCount = 0;
+    var sum = 0;
+    var number;
+
+    for (number = 0; primeCount < n; number = number + 1) {
+        if (isPrime(number)) {
+            sum = sum + number;
+            primeCount = primeCount + 1;
+        }
+    }
+
+    return sum;
+};
+///////////////////////////////////////////////////
 
 // A _palindrome_ is a string that reads the same forwards and backwards. Write
 // a function that accepts a string of arbitrary letters, numbers, and symbols, and
@@ -394,6 +553,31 @@ var removeNonLetters = function (string) {
 };
 
 
+///////////////////////////////////////////////////
+// helper function
+var isLetter = function (str) {
+    return str.length === 1 && ("a" <= str && str <= "z") || ("A" <= str && str <= "Z");
+};
+
+var removeNonLetters = function (str) {
+    if (typeof str !== "string") {
+        throw "input to removeNonLetters should be a string!";
+    }
+
+    var result = "";
+    var index;
+
+    for (index = 0; index < str.length; index = index + 1) {
+        if (isLetter(str.charAt(index))) {
+            result = result + str.charAt(index);
+        }
+    }
+
+    return result;
+};
+///////////////////////////////////////////////////
+
+
 // Now use `removeNonLetters`, along with the `reverse` function from above to
 // determine if the string is a palindrome.
 var isPalindrome = function (string) {
@@ -401,9 +585,25 @@ var isPalindrome = function (string) {
   var result = false;
 
   if ( typeof string === "string" && removeNonLetters(string).toLowerCase() === removeNonLetters(reverseString(string)).toLowerCase() ) {
-    return true;
+    result = true;
   };
 
   // console.log(removeNonLetters(string).toLowerCase(), removeNonLetters(reverseString(string)).toLowerCase() )
   return result;
 };
+
+///////////////////////////////////////////////////
+var isPalindrome = function (str) {
+    var result;
+    var onlyLettersLC;
+
+    if (typeof str !== "string") {
+        result = false;
+    } else {
+        onlyLettersLC = removeNonLetters(str).toLowerCase();
+        result = onlyLettersLC === reverseString(onlyLettersLC);      // !!! result =
+    }
+
+    return result;
+};
+///////////////////////////////////////////////////
