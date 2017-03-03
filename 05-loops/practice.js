@@ -374,11 +374,36 @@ var sumOfFirstNPrimes = function (number) {
 //     removeNonLetters("this is a string; it has some punctuation!");
 //     //=> thisisastringithassomepunctuation
 //
-var removeNonLetters = function () {
+var removeNonLetters = function (string) {
+
+  if (typeof string !== "string") {
+      throw "input should be a string!";
+  };
+
+  var index;
+  var letters = '';
+
+  for (index = 0; index < string.length; index = index + 1) {
+    letter = string.charAt(index);
+    if (letter >= "A" && letter <= "z") {
+      letters = letters + letter;
+    }
+  }
+
+  return letters;
 };
 
 
 // Now use `removeNonLetters`, along with the `reverse` function from above to
 // determine if the string is a palindrome.
-var isPalindrome = function () {
+var isPalindrome = function (string) {
+
+  var result = false;
+
+  if ( typeof string === "string" && removeNonLetters(string).toLowerCase() === removeNonLetters(reverseString(string)).toLowerCase() ) {
+    return true;
+  };
+
+  // console.log(removeNonLetters(string).toLowerCase(), removeNonLetters(reverseString(string)).toLowerCase() )
+  return result;
 };
