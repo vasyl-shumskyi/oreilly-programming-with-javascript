@@ -1,0 +1,54 @@
+var greeting = "hello world";
+undefined
+greeting.charAt(3);
+"l"
+greeting[3]
+"l"
+var list = [ 1,2,3,4,5 ]
+undefined
+list[3]
+4
+list[-1]
+undefined
+ list[list.length - 1]
+5
+greeting[greeting.length - 1]
+"d"
+var tweet = "this is a tweet" + "! lol"
+undefined
+tweet
+"this is a tweet! lol"
+var numbers = [1,2,3,4]
+undefined
+var numbers = [1,2,3,4].concat([5,6,7,8])
+undefined
+numbers
+[1, 2, 3, 4, 5, 6, 7, 8]
+var tweets = [ "this is a tweet", "awesome", "lol" ]
+undefined
+tweets
+["this is a tweet", "awesome", "lol"]
+tweets.indexOf["tweet"]
+undefined
+tweets.indexOf["lol"]
+undefined
+tweets.indexOf("lol")
+2
+tweets.indexOf("omg")
+-1
+nubmers
+VM1268:1 Uncaught ReferenceError: nubmers is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM1268:1
+numbers
+Array[8]0: 11: 22: 33: 44: 55: 66: 77: 8length: 8__proto__: Array[0]
+var numbersString = "12345678"
+undefined
+numbers.slice(3)
+[4, 5, 6, 7, 8]
+numbersString.slice(3)
+"45678"
+numbers.slice(3,5)
+[4, 5]
+numbersString.slice(3,5)
+"45"

@@ -1,0 +1,73 @@
+var greetings = ["hello", "hola", "aloha", "bonjour"];
+undefined
+greetings
+["hello", "hola", "aloha", "bonjour"]
+var primes = [2,3,5,7,11,13,17,19,23,29]
+undefined
+primes
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+greetings[1]
+"hola"
+greetings[0]
+"hello"
+greetings[0]
+"hello"
+greetings[2]
+"aloha"
+primes[5]
+13
+primes[0]
+2
+prime.push(31);
+VM234:1 Uncaught ReferenceError: prime is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM234:1
+primes.push(31);
+11
+primes
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+greetings.push["привіт"]
+undefined
+greetings.push("привіт")
+5
+greetings
+["hello", "hola", "aloha", "bonjour", "привіт"]
+greetings[0] = "goodbye"
+"goodbye"
+greetings
+["goodbye", "hola", "aloha", "bonjour", "привіт"]
+var index;
+undefined
+for (index=0; index < greetings.length - 1; index = index + 1) {
+	console.log(greetings[index]);
+}
+VM629:2 goodbye
+VM629:2 hola
+VM629:2 aloha
+VM629:2 bonjour
+undefined
+for (index=0; index < greetings.length; index = index + 1) {
+	console.log(greetings[index]);
+}
+VM638:2 goodbye
+VM638:2 hola
+VM638:2 aloha
+VM638:2 bonjour
+VM638:2 привіт
+undefined
+var numbers = [];
+undefined
+numbers.push(1);
+1
+numbers
+[1]
+var count;
+undefined
+for (count = 2; count < 10; count = count + 1) {
+	numbers.push(count);
+}
+9
+numbers
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+count
+10
