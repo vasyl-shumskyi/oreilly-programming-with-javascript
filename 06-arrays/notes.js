@@ -111,10 +111,73 @@ var smallestArrayNum = function(array) {
   var min = array[0];
 
   for (index = 1; index < array.length; index = index + 1) {
-    if (array[index] < min) { min = array[index] };               // ! min = Math.min(min, array[index]); will also works
+    if (array[index] < min) { min = array[index] };
+//  min = Math.min(min, array[index]);                             // ! will also works
   };
 
   return min;
 }
+////////////////////////////////////////////////
+// Try outs:
+
+var largestArrayNumber = function(array) {
+
+  var index;
+  var max = array[0];
+
+  for (index=1; index < array.length; index = index + 1) {         // ! index=1 not =0
+    if (array[index] > max) { max = array[index]; }
+//  max = Math.max(max, array[index]);                             // ! will also works
+  }
+  return max;
+}
+
+var multiplyByThreeArray = function(array) {
+
+  var index;
+  var result = [];
+
+  for (index=0; index < array.length; index = index + 1) {
+
+    if (typeof array[index] !== "number") {
+      throw "All array elements should be the numbers";
+    }
+
+    result.push(array[index]*3);
+  }
+
+  return result;
+}
+
+var divisibleByThree = function(array) {
+
+  var index;
+  var result = [];
+
+  for (index=0; index < array.length; index = index + 1) {
+
+    if (typeof array[index] !== "number") {
+      throw "All array elements should be the numbers!"
+    }
+
+    if (array[index] % 3 === 0) {
+      result.push(array[index]);
+    }
+  }
+
+  return result;
+}
+
+////////////////////////////////
+array = [1,2,3,4,5];
+
+typeof array;
+// => object
+Array.isArray(array);
+// => true
+Array.isArray([]);
+// => true
+Array.isArray(5);
+// => false
 
 // END - Arrays - More Examples
