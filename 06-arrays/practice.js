@@ -200,14 +200,18 @@ var containsAnyTwice = function (array1, array2) {
 var getValuesAppearingTwice = function (array) {
 
   var index;
-  var newArray [];
+  var newArray = [];
 
   for (index=0; index < array.length; index = index + 1) {
-    element = array[index];
-//    if (element === )
 
-  }
+      var element = array[index];
 
+      if ( containsTwice ( element, array ) && newArray.indexOf(element) === -1 ) {
+          newArray.push(array[index]);
+      };
+  };
+
+  return newArray;
 };
 
 
@@ -230,7 +234,26 @@ var getValuesAppearingTwice = function (array) {
 //     range("hello", "world");
 //     //=> arguments to range must be numbers
 //
-var range = function () {
+var range = function (start, end) {
+
+  if (typeof start !== "number" || typeof end !== "number") {
+    throw "arguments to range must be numbers";
+  }
+
+  var n;
+  var array = [];
+
+  if (start < end) {
+    for (n = start; n <= end; n = n + 1) {
+      array.push(n);
+    }
+  } else {
+    for (n = start; n >= end; n = n - 1) {
+      array.push(n);
+    }
+  }
+
+  return array;
 };
 
 
@@ -255,7 +278,46 @@ var range = function () {
 //     mapToTags([ "not an html element" ]);
 //     //=> all entries must be html elements!
 //
-var mapToTags = function () {
+
+var isHTMLElement = function (string) {
+
+  openTag = string.slice(1, string.indexOf('>'));
+  closeTag = string.slice(string.indexOf("/") + 1, string.length - 1);
+
+  return openTag === closeTag;
+
+};
+
+
+var getTagName = function (string) {
+
+  var tag;
+
+  if (isHTMLElement(string)) {
+    tag = string.slice(1, string.indexOf('>'));
+  } else {
+    throw '"' + string + '" is not an HTML element!'
+  }
+
+  return tag;
+}
+
+
+var mapToTags = function (array) {
+
+  if ( !Array.isArray(array) ) {
+    throw "wat?"
+  }
+
+  var index;
+  var tagArray = [];
+
+  for (index = 0; index < array.length; index = index + 1) {
+    tag = getTagName(array[index]);
+    tagArray.push(tag);
+  }
+
+  return tagArray;
 };
 
 
@@ -279,5 +341,39 @@ var mapToTags = function () {
 //     filterToLol(["this is a string", false, 5]);
 //     //=> all entries must be strings!
 //
-var filterToLol = function () {
+
+var containsWord = function (string) {
+
+  if (typeof string !== "string") {
+    throw "all entries must be strings!";
+  }
+
+  var result = false;
+  var word = 'lol';
+  var stringL = string.toLowerCase();
+
+  if (stringL.indexOf(word) !== -1) {
+    result = true;
+  };
+
+  return result;
+}
+
+var filterToLol = function (array) {
+
+  if (!Array.isArray(array)) {
+    throw "no can do."
+  }
+
+  var index;
+  var wordArray = [];
+
+  for (index=0; index < array.length; index = index + 1) {
+    var element = array[index];
+
+    if( containsWord(element) ) {
+      wordArray.push(element)
+    }
+  }
+  return wordArray;
 };
