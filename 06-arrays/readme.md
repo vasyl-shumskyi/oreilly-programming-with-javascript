@@ -263,6 +263,39 @@ same thing. However, they've got a few important differences. What happens when
 you access an element outside the length of the string with `charAt`? What
 happens when you do the same thing with the square brackets?
 
+```
+> string = "this is a tweet"
+"this is a tweet"
+
+> string.charAt(123)
+""
+
+> string[123]
+undefined
+```
+
 1. You can _mutate_ an the value at an index in an array by using the square
 brackets. Does the same thing work with a string? Why might that be?
 
+```
+> string = "this is a tweet"
+"this is a tweet"
+
+> array = [1,2,3,4,5]
+[1, 2, 3, 4, 5]
+
+> array[0] = 100500
+100500
+
+> array
+[100500, 2, 3, 4, 5]
+
+> string[0]
+"t"
+
+> string[0] = 'XYZ'
+"XYZ"
+
+> string
+"this is a tweet"
+```

@@ -1,3 +1,26 @@
+///////////////////////////////////////////////////////////////
+// helper functions that are used throughout
+var isString2 = function (val) {
+    return typeof val === "string";
+};
+
+var isHTMLElement2 = function (str) {
+    var openTag = str.substring(str.indexOf("<") + 1, str.indexOf(">"));
+    var closeTag = str.substring(str.lastIndexOf("</") + 2, str.lastIndexOf(">"));
+    return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && openTag === closeTag;
+};
+// ! str.substring(str.lastIndexOf("</") + 2, str.lastIndexOf(">"));
+// ! str.charAt(0) === "<" && str.charAt(str.length - 1) === ">"
+
+var getTagName2 = function (elt) {
+    if (!isHTMLElement2(elt)) {
+        throw "Error: Not an HTML Element!";
+    }
+
+    return elt.slice(1, elt.indexOf(">"));
+};
+///////////////////////////////////////////////////////////////
+
 // Write a function called `containsTwice` that accepts a number and an array,
 // and returns `true` if that number appears in the array twice, and `false`
 // otherwise.
@@ -29,6 +52,21 @@ var containsTwice = function (element, array) {
   return counter === limit;
 };
 
+///////////////////////////////////////////////////////////////
+var containsTwice2 = function (value, array) {
+    var count = 0;
+    var i = 0;
+
+    for (i = 0; i < array.length; i = i + 1) {
+        if (array[i] === value) {
+            count = count + 1;
+        }
+    }
+
+    return count === 2;
+};
+///////////////////////////////////////////////////////////////
+
 
 // Generalize the previous solution into a function called `containsNTimes` so
 // that it can check for a value an arbitrary number of times.
@@ -56,6 +94,22 @@ var containsNTimes = function (times, element, array) {
   return counter === times;
 };
 
+///////////////////////////////////////////////////////////////
+var containsNTimes2 = function (n, value, array) {
+    var count = 0;
+    var i = 0;
+
+    for (i = 0; i < array.length; i = i + 1) {
+        if (array[i] === value) {
+            count = count + 1;
+        }
+    }
+
+    return count === n;
+};
+///////////////////////////////////////////////////////////////
+
+
 
 // Write a function called `atLeastOneEven` that returns `true` if at least one of
 // the numbers in input array is even, false otherwise. It should throw an error if
@@ -79,7 +133,7 @@ var atLeastOneEven = function (array) {
   var result = false;
 
   if ( !Array.isArray(array) ) {
-    throw "input should be an array!";
+    throw "input should be an array!";              // ! it's better to put throw before defining variables
   }
 
   for (index=0; index < array.length && result === false; index = index + 1) {
@@ -91,6 +145,25 @@ var atLeastOneEven = function (array) {
   return result;
 
 };
+
+///////////////////////////////////////////////////////////////
+var atLeastOneEven2 = function (list) {
+    if (!Array.isArray(list)) {
+        throw "input should be an array!";
+    }
+
+    var result = false;
+    var i;
+
+    for (i = 0; i < list.length; i = i + 1) {       // no '&& result === false', iterating all array :)
+        if (list[i] % 2 === 0) {
+            result = true;
+        }
+    }
+
+    return result;
+};
+///////////////////////////////////////////////////////////////
 
 
 // Write a function called `allStrings` that accepts an array as an argument and
@@ -115,7 +188,7 @@ var allStrings = function (array) {
   var result = true;
 
   if (!Array.isArray(array)) {
-    throw "Input should be an array!"
+    throw "Input should be an array!"                   // ! it's better to put throw before defining variables
   };
 
   for (index=0; index < array.length && result; index = index + 1) {
@@ -128,6 +201,29 @@ var allStrings = function (array) {
   return result;
 };
 
+///////////////////////////////////////////////////////////////
+var isString2 = function (val) {
+    return typeof val === "string";
+};
+
+var allStrings2 = function (list) {
+    if (!Array.isArray(list)) {
+        throw "input should be an array!";
+    }
+
+    var result = true;
+    var i;
+
+    for (i = 0; i < list.length && result === true; i = i + 1) {      // '&& result' is enough :)
+        if (!isString2(list[i])) {
+            result = false;
+        }
+    }
+
+    return result;
+};
+
+///////////////////////////////////////////////////////////////
 
 // Write a function that accepts two arrays, and returns true if any of the
 // values in the first array appear twice in the second array. You might want to
@@ -153,7 +249,8 @@ var allStrings = function (array) {
 //
 var containsAnyTwice = function (array1, array2) {
 
-  if ( !Array.isArray(array1) && Array.isArray(array2) ) {
+//if ( !Array.isArray(array1) &&  Array.isArray(array2) ) {            // Not(!) before each element!
+  if ( !Array.isArray(array1) || !Array.isArray(array2) ) {
     throw "containsAnyTwice expects two arguments, both of which should be an array.";
   };
 
@@ -171,6 +268,25 @@ var containsAnyTwice = function (array1, array2) {
 
 };
 
+///////////////////////////////////////////////////////////////
+var containsAnyTwice2 = function (values, array) {
+    if (!Array.isArray(values) || !Array.isArray(array)) {
+        throw "containsAnyTwice expects two arguments, both of which should be an array.";
+    }
+
+    var result = false;
+    var i = 0;
+
+    for (i = 0; i < values.length && result === false; i = i + 1) {           // '!result' is shorter than 'result === false' :)
+        if (containsTwice2(values[i], array)) {
+            result = true;
+        }
+    }
+
+    return result;
+};
+
+///////////////////////////////////////////////////////////////
 
 // In the previous problem, we determined whether or not an array contains any
 // of a list of values exactly twice. In this problem, we'll actually return
@@ -207,13 +323,27 @@ var getValuesAppearingTwice = function (array) {
       var element = array[index];
 
       if ( containsTwice ( element, array ) && newArray.indexOf(element) === -1 ) {
-          newArray.push(array[index]);
+          newArray.push(element);
       };
   };
 
   return newArray;
 };
 
+///////////////////////////////////////////////////////////////
+var getValuesAppearingTwice2 = function (array) {
+    var result = [];
+    var i;
+
+    for (i = 0; i < array.length; i = i + 1) {
+        if (containsTwice2(array[i], array) && result.indexOf(array[i]) === -1) {
+            result.push(array[i]);
+        }
+    }
+
+    return result;
+};
+///////////////////////////////////////////////////////////////
 
 // Using a standard `for` loop, along with the `push` function, write a function
 // called `range` that accepts two numbers, `begin` and `end`, and returns an array
@@ -255,6 +385,39 @@ var range = function (start, end) {
 
   return array;
 };
+
+///////////////////////////////////////////////////////////////
+var range2 = function (numA, numB) {
+    if (typeof numA !== "number" || typeof numB !== "number") {
+        throw "arguments to range must be numbers";
+    }
+
+    var increment;
+    var i;
+    var result = [];
+
+    if (numA <= numB) {
+        // we're going up!
+        increment = 1;
+    } else {
+        // we're going down!
+        increment = -1;
+    }
+
+    // here we keep going, either up or down, until we hit
+    // numB
+    for (i = numA; i !== numB; i = i + increment) {                 // !!! i !== numB
+        result.push(i);
+    }
+
+    // we'll skip numB in the above loop, so we'll push it here.    // !!!
+    result.push(numB);
+
+    return result;
+};
+
+
+///////////////////////////////////////////////////////////////
 
 
 // Using the `isHTMLElement` and `getTagName` function from one of the previous
@@ -320,6 +483,44 @@ var mapToTags = function (array) {
   return tagArray;
 };
 
+///////////////////////////////////////////////////////////////
+var isHTMLElement2 = function (str) {
+    var openTag = str.substring(str.indexOf("<") + 1, str.indexOf(">"));
+    var closeTag = str.substring(str.lastIndexOf("</") + 2, str.lastIndexOf(">"));
+    return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && openTag === closeTag;
+};
+// ! str.substring(str.lastIndexOf("</") + 2, str.lastIndexOf(">"));
+// ! str.charAt(0) === "<" && str.charAt(str.length - 1) === ">"
+
+
+var getTagName2 = function (elt) {
+    if (!isHTMLElement2(elt)) {
+        throw "Error: Not an HTML Element!";
+    }
+
+    return elt.slice(1, elt.indexOf(">"));
+};
+
+
+var mapToTags2 = function (htmlElements) {
+    if (!Array.isArray(htmlElements)) {
+        throw "wat?";
+    }
+
+    var tags = [];
+    var i;
+
+    for (i = 0; i < htmlElements.length; i = i + 1) {
+        if (!isHTMLElement2(htmlElements[i])) {
+            throw "'" + htmlElements[i] + "' is not an HTML Element";
+        }
+        tags.push(getTagName2(htmlElements[i]));
+    }
+
+    return tags;
+};
+///////////////////////////////////////////////////////////////
+
 
 // Write a function called `filterToLol` which accepts an array of tweets and
 // returns an array that consists only of those that contain `lol` (upper, lower,
@@ -377,3 +578,48 @@ var filterToLol = function (array) {
   }
   return wordArray;
 };
+
+///////////////////////////////////////////////////////////////
+var isString2 = function (val) {
+    return typeof val === "string";
+};
+
+
+var allStrings2 = function (list) {
+    if (!Array.isArray(list)) {
+        throw "input should be an array!";
+    }
+
+    var result = true;
+    var i;
+
+    for (i = 0; i < list.length && result === true; i = i + 1) {
+        if (!isString2(list[i])) {
+            result = false;
+        }
+    }
+
+    return result;
+};
+
+var filterToLol2 = function (list) {
+    if (!Array.isArray(list)) {
+        throw "no can do.";
+    }
+
+    if (!allStrings2(list)) {
+        throw "all entries must be strings!";
+    }
+
+    var result = [];
+    var i;
+
+    for (i = 0; i < list.length; i = i + 1) {
+        if (list[i].toLowerCase().indexOf("lol") > -1) {
+            result.push(list[i]);
+        }
+    }
+
+    return result;
+};
+///////////////////////////////////////////////////////////////
