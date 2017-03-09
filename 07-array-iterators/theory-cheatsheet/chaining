@@ -1,0 +1,13 @@
+var double = function(number) {
+	return number*2;
+}
+undefined
+[1,2,3,4,5].map(double).forEach(function (number) {
+	console.log("this is the number " + number);
+})
+VM696:2 this is the number 2
+VM696:2 this is the number 4
+VM696:2 this is the number 6
+VM696:2 this is the number 8
+VM696:2 this is the number 10
+undefined

@@ -1,0 +1,25 @@
+var tweets = ["hello world", "another tweet", "lol"]
+undefined
+var i;
+undefined
+for (i=0; i<tweets.length; i=i+1) {console.log(tweets[i]) }
+VM177:1 hello world
+VM177:1 another tweet
+VM177:1 lol
+undefined
+var printElement = function (tweet) {
+	console.log(tweet);
+}
+undefined
+ tweets.forEach(printElement);
+VM279:2 hello world
+VM279:2 another tweet
+VM279:2 lol
+undefined
+ tweets.forEach(function (tweet) {
+	console.log(tweet);
+});
+VM341:2 hello world
+VM341:2 another tweet
+VM341:2 lol
+undefined

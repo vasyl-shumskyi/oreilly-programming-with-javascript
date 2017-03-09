@@ -1,0 +1,63 @@
+var tweets = ["hello world", "another tweet", "this is another awesome tweet", "lol"]
+undefined
+tweets.some(function(tweet) {
+	return tweet.indexOf("awesome") > -1;
+})
+true
+tweets.filter(function(tweet) {
+	return tweet.indexOf("awesome") > -1;
+})
+["this is another awesome tweet"]
+var tweets = ["hello world", "another tweet", "this is another awesome tweet", "lol", "i am awesome"]
+undefined
+tweets.filter(function(tweet) {
+	return tweet.indexOf("awesome") > -1;
+})
+["this is another awesome tweet", "i am awesome"]
+tweets.some(function(tweet) {
+	return tweet.indexOf("awesome") > -1;
+})
+true
+tweets.some(function(tweet) {
+	console.log(tweet);
+	return tweet.indexOf("awesome") > -1;
+})
+VM1388:2 hello world
+VM1388:2 another tweet
+VM1388:2 this is another awesome tweet
+true
+tweets.every(function(tweet) {
+	console.log(tweet);
+	return tweet.indexOf("awesome") > -1;
+})
+VM1407:2 hello world
+false
+range(100)
+Array[101]
+range(100).filter(function(number) {
+	return number % 2 === 0;
+})
+[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100]
+range(100).filter(function (number) {
+	return number % 2 === 0;
+}).every(function (number) {
+	return number % 2 === 0;
+})
+true
+range(100).every(function (number) {
+	return number % 2 === 0;
+})
+false
+range(100).every(function (number) {
+	console.log(number);
+	return number % 2 === 0;
+})
+VM1604:2 0
+VM1604:2 1
+false
+tweets
+["hello world", "another tweet", "this is another awesome tweet", "lol", "i am awesome"]
+tweets.every(function (word) {
+	return word.indexOf("lol") > -1;
+})
+false

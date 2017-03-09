@@ -1,0 +1,8 @@
+firstLetters(['gracie', 'loki', 'allie', 'layla'])
+["g", "l", "a", "l"]
+[ true, false, false, true, false ].map(function(val) {
+
+return !val;
+}
+)
+[false, true, true, false, true]
