@@ -8,7 +8,15 @@
 //      reverse([ "hello", "world" ]);
 //      //=> [ "world", "hello" ]
 //
-var reverse = function () {
+var reverse = function (array) {
+
+  if (array.length > 0) {
+      return array.reduce(function(values, value) {
+        return [value].concat(values);
+      })
+  } else {
+      return array;
+  };
 };
 
 // Did you know that you could have arrays within arrays? This is perfectly
@@ -39,7 +47,11 @@ var reverse = function () {
 //
 // You'll also want to use the `concat` method to make this work.
 //
-var flatten = function () {
+var flatten = function (array) {
+
+  return array.reduce(function(values, value) {
+        return values.concat(value);
+  }, []);
 };
 
 // Using `range` and a chain of array methods, write a function that accepts a
@@ -71,7 +83,11 @@ var sumOfMultiplesOf3And5 = function () {
 //     atLeastOneVowel("sdfjkl");
 //     //=> false
 //
-var atLeastOneVowel = function () {
+var atLeastOneVowel = function (string) {
+
+  return string.toLowerCase().split("").some(function (vowel) {
+    return vowel === 'a' || vowel === 'e' || vowel === 'i' || vowel === 'o' || vowel === 'u'
+  })
 };
 
 // Write a function that accepts a list of tweets, and returns the
@@ -84,7 +100,23 @@ var atLeastOneVowel = function () {
 //     longestAwesomeTweet([ "hello", "world" ]);
 //     //=> ""
 //
-var longestAwesomeTweet = function () {
+var longestAwesomeTweet = function (array) {
+
+  var word = "awesome";
+
+  if (array.join().indexOf(word) === -1) {
+    return "";
+  };
+
+  return array.filter(function (string) {
+    return string.indexOf(word) > -1;
+
+  }).reduce(function(larger, value) {
+      if (value.length > larger.length) {
+        larger = value;
+      };
+      return larger;
+  });
 };
 
 // Write a function that accepts an array of HTMLElements and returns an
