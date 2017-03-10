@@ -216,3 +216,88 @@ var primeFilter = function(limit) {
 };
 
 //////////////////////////////////////////////////
+
+var sumReduce = function(array) {
+
+  var result = array.reduce(function(sum, value) {
+    return sum + value;
+  });
+
+  return result;
+}
+
+// Try out
+var smallestReduceMath = function(array) {
+
+  var result = array.reduce(function(smaller, value) {
+    return Math.min(smaller, value);
+  });
+
+  return result;
+}
+
+var smallestReduceMath2 = function (array) {
+  return array.reduce(function (smaller, value) {
+    return Math.min(smaller, value);
+  });
+};
+
+var smallestReduceIf = function(array) {
+
+  var result = array.reduce(function(smaller, value) {
+    if (value < smaller) { smaller = value; };
+    return smaller;
+  });
+
+  return result;
+}
+
+
+var capitalize = function(string) {
+  return string[0].toUpperCase() + string.slice(1);
+}
+
+var tweetsToParagraph = function(array) {
+
+  return array.reduce(function(first, value) {
+    return first + capitalize(value) + '. ';
+  }, "");                                             // !!! set first = ""
+
+}
+
+//////////////////////////////////////////////////
+
+var greeting = "hello world!"
+greeting.split("");
+// => ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d", "!"]
+
+greeting.split("").forEach(function(letter) {
+  console.log(letter);
+})
+
+
+var dogNames = "gracie,loki,dahlia,ally,layla";
+dogNames.split(",");
+// => ["gracie", "loki", "dahlia", "ally", "layla"]
+dogNames.split(",").map(capitalize);
+// => ["Gracie", "Loki", "Dahlia", "Ally", "Layla"]
+
+
+var tweet = "this is a tweet";
+tweet.split(" ");
+// => ["this", "is", "a", "tweet"]
+
+var array = ["this", "is", "a", "tweet"]
+array.reduce(function(a, element) {
+  return a + element + ' ';
+}, "");
+// =>  "this is a tweet "
+
+var array = ["this", "is", "a", "tweet"]
+array.join(" ");
+// => "this is a tweet"
+array.join(" -- ");
+// => "this -- is -- a -- tweet"
+
+"this is a tweet".split(" ").map(capitalize).join(" :: ");
+// => "This :: Is :: A :: Tweet"
