@@ -67,7 +67,32 @@ var flatten = function (array) {
 //     sumOfMultiplesOf3And5(0);
 //     //=> 0
 //
-var sumOfMultiplesOf3And5 = function () {
+
+var range = function(n) {
+
+    var array = [];
+    var i;
+    for (i = 0; i <= n; i = i + 1) {
+      array.push(i);
+    }
+    return array;
+};
+
+
+var sumOfMultiplesOf3And5 = function (n) {
+
+  if (n < 3) { return 0; }
+
+  var array = range(n);
+
+  return array.filter(function(number) {
+    if (number % 3 === 0 || number % 5 === 0) {
+      return number;
+    }
+
+  }).reduce(function (sum, current) {
+    return sum + current;
+  })
 };
 
 // Write a function called atLeastOneVowel that accepts a string and
@@ -128,7 +153,12 @@ var longestAwesomeTweet = function (array) {
 //     elementsToContent([ "<h1>This is an important heading!</h1>", "<h5>this is not as important</h5>" ]);
 //     //=> [ "This is an important heading!", "this is not as important" ]
 //
-var elementsToContent = function () {
+
+var elementsToContent = function (array) {
+
+  return array.map(function(value) {
+    return value.slice(value.indexOf(">") + 1, value.lastIndexOf("<"));
+  });
 };
 
 // In a previous section, we created a function called `randUpTo` that
@@ -144,7 +174,17 @@ var elementsToContent = function () {
 //     randomArray(5, 10);
 //     //=> [ 2, 0, 3, 9, 10 ]
 //
-var randomArray = function () {
+
+var randomArray = function (length, max) {
+
+  var array = [];
+
+  while (array.length < length) {
+    array.push( Math.floor( Math.random()*max ) );
+  };
+
+  return array;
+
 };
 
 // Using the `randomNums` function from above, write a function called
@@ -158,5 +198,14 @@ var randomArray = function () {
 // randomElements([ "clubs", "diamonds", "hearts", "spades" ], 3);
 // //=> [ "hearts", "diamonds", "hearts" ]
 //
-var randomElements = function () {
+var randomElements = function (array, n) {
+
+  var newArray = [];
+
+  while (newArray.length < n) {
+    index = Math.floor(Math.random() * array.length);
+    newArray.push(array[index]);
+  }
+
+  return newArray;
 };
