@@ -15,7 +15,11 @@
 //     isUser({ "age": 37, "name":"Semmy Purewal", "screen_name":"semmypurewal" });
 //     //=> false
 //
-var isUser = function () {
+var isUser = function (obj) {
+  return  typeof obj === "object" &&
+          typeof obj.name === "string" &&
+          typeof obj.screen_name === "string" &&
+          Object.keys(obj).length === 2
 };
 
 
@@ -33,7 +37,11 @@ var isUser = function () {
 // Write this function. It should throw an error if the user is not a valid
 // user. It might be helpful to use some functions from previous sections.
 //
-var userToDiv = function () {
+var userToDiv = function (obj) {
+
+  if (!isUser(obj)) { throw "Not valid input" };
+  return "<div><h1>" + obj.name + "</h1><h2>" + obj.screen_name + "</h2></div>";
+
 };
 
 
@@ -59,7 +67,21 @@ var userToDiv = function () {
 //     });
 //     //=> "<div><h1>Semmy Purewal</h1><h2>semmypurewal</h2><ul><li>this is a tweet.</li><li>this is another tweet</li></ul></div>"
 //
-var userWithTweetsToDiv = function () {
+var userWithTweetsToDiv = function (obj) {
+
+  if (typeof obj !== "object"       ||
+      typeof obj.name !== "string"  ||
+      typeof obj.screen_name !== "string") {
+
+        throw "Not valid input"
+      };
+
+  var tweetsList = obj.tweets.reduce(function(first, current) {
+    return "<ul><li>" + first + "</li><li>" + current + "</li></ul>"
+  });
+
+  return "<div><h1>" + obj.name + "</h1><h2>" + obj.screen_name + "</h2>" + tweetsList + "</div>";
+
 };
 
 
@@ -79,5 +101,20 @@ var userWithTweetsToDiv = function () {
 // There are several ways you can do it, but it might be interesting to try it with
 // the `reduce` method that starts with an empty object.
 //
-var frequencies = function () {
+var frequencies = function (array) {
+
+  if (!Array.isArray(array)) {
+    throw "Input should be an array!";
+  };
+
+  return array.reduce(function (obj, current) {
+
+      if (obj[current] > 0) {
+          obj[current] = obj[current] + 1;
+      } else {
+          obj[current] = 1;
+      }
+
+      return obj;
+  }, {})
 };
