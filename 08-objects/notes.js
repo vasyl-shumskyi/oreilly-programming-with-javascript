@@ -159,3 +159,27 @@ isTweetRight({})
 // false
 isTweetRight([])
 // false
+
+//////////////////////////////////////////////////////
+// START - Find key by value without itteration
+
+var keyByValue = function(value) {
+
+    var kArray = Object.keys(greetings);        // Creating array of keys
+    var vArray = Object.values(greetings);      // Creating array of values
+    var vIndex = vArray.indexOf(value);         // Finding value index
+
+    return kArray[vIndex];                      // Returning key by value index
+}
+
+
+var greetings = {
+	english   : "hello",
+ 	ukranian  : "привіт",
+};
+
+
+keyByValue("привіт");
+// => "ukranian"
+
+// END - Find key by value without itteration

@@ -424,6 +424,8 @@ questions.
 
 1) Which suit appears the most frequently?
 
+Non automated solution:
+
 ```
 hearts (1257)
 
@@ -436,18 +438,203 @@ cards.filter(function(card) { return card.suit === "spades" }).length
 cards.filter(function(card) { return card.suit === "diamonds" }).length
 1252
 ```
+Automated solution:
+
+```
+keyByValue(maxElement(elementsCount(cards)))
+// => "hearts : 1257"
+```
+
+```
+///////////////////////////////////////////////////////
+// Counting the elements function
+///////////////////////////////////////////////////////
+
+var elementsCount = function(array) {
+  return array.reduce(function (obj, current) {
+    suit = current.suit;
+    if (obj[suit] === undefined) {
+        obj[suit] = 1;
+    } else {
+      obj[suit] = obj[suit] + 1
+    }
+    return obj;
+  }, {})
+}
+
+///////////////////////////////////////////////////////
+// Finding the max value element of an Object function
+///////////////////////////////////////////////////////
+
+var maxElement = function(obj) {  
+
+  obj = elementsCount(cards);
+  vArray = Object.values(obj);
+
+  return vArray.reduce(function(max, current) {
+    return max > current ? max : current;
+  });
+}
+
+///////////////////////////////////////////////////////
+// Finding key by value function
+///////////////////////////////////////////////////////
+
+var keyByValue = function(value) {
+  obj = elementsCount(cards);
+
+  kArray = Object.keys(obj);
+  vArray = Object.values(obj);
+
+  valueIndex = vArray.indexOf(value);
+  key = kArray[valueIndex];
+
+  return key + " : " + value;
+};
+
+```
+
 
 
 2) Which rank appears the most frequently?
+
+Automated solution:
+
+```
+keyByValue(maxElement(elementsCount(cards)))
+// => "queen : 421"
+```
+
+```
+///////////////////////////////////////////////////////
+// Counting the elements function
+///////////////////////////////////////////////////////
+
+var elementsCount = function(array) {
+  return array.reduce(function (obj, current) {
+    rank = current.rank;
+    if (obj[rank] === undefined) {
+        obj[rank] = 1;
+    } else {
+      obj[rank] = obj[rank] + 1
+    }
+    return obj;
+  }, {})
+}
+
+///////////////////////////////////////////////////////
+// Finding the max value element of an Object function
+///////////////////////////////////////////////////////
+
+var maxElement = function(obj) {  
+
+  obj = elementsCount(cards);
+  vArray = Object.values(obj);
+
+  return vArray.reduce(function(max, current) {
+    return max > current ? max : current;
+  });
+}
+
+///////////////////////////////////////////////////////
+// Finding key by value function
+///////////////////////////////////////////////////////
+
+var keyByValue = function(value) {
+  obj = elementsCount(cards);
+
+  kArray = Object.keys(obj);
+  vArray = Object.values(obj);
+
+  valueIndex = vArray.indexOf(value);
+  key = kArray[valueIndex];
+
+  return key + " : " + value;
+};
+
+```
 
 
 
 3) How many times does the ace of spades appear? What about the two of clubs?
 
+```
+cardCount("ace", "spades", cards)
+// => 105
+
+cardCount("two", "clubs", cards)
+// => 91
+```
+```
+var cardCount = function(fRank, fSuit, array) {
+  return array.filter(function(element) {
+      return element.rank === fRank && element.suit === fSuit;
+    }).length;
+}
+```
+
+
 4) Can you think of a way to determine which card appears the most frequently?
 Obviously, you can repeat the process above for all 52 combinations, but is
 there an automated way you can do it? By the end of all of the subsequent
 exercises, you should be able to do this using a single function.
+
+
+```
+keyByValue(maxElement(elementsCount(cards)))
+// => "nine of spades : 116"
+```
+
+```
+///////////////////////////////////////////////////////
+// Counting the elements function
+///////////////////////////////////////////////////////
+
+var elementsCount = function(array) {
+  return array.reduce(function(obj, value) {
+      card = value.rank + ' of ' + value.suit;
+
+      if (obj[card] === undefined) {
+        obj[card] = 1;
+      } else {
+        obj[card] = obj[card] + 1;
+      }
+
+      return obj;
+    }, {})
+}
+
+///////////////////////////////////////////////////////
+// Finding the max value element of an Object function
+///////////////////////////////////////////////////////
+
+var maxElement = function(obj) {  
+
+  obj = elementsCount(cards);
+  vArray = Object.values(obj);
+
+  return vArray.reduce(function(max, current) {
+    return max > current ? max : current;
+  });
+}
+
+///////////////////////////////////////////////////////
+// Finding key by value function
+///////////////////////////////////////////////////////
+
+var keyByValue = function(value) {
+  obj = elementsCount(cards);
+
+  kArray = Object.keys(obj);
+  vArray = Object.values(obj);
+
+  valueIndex = vArray.indexOf(value);
+  key = kArray[valueIndex];
+
+  return key + " : " + value;
+};
+
+```
 
 For the next set of questions, open up the file `tweets.html` in Chrome, then
 open the developer console. There should be a variable defined called
@@ -463,17 +650,129 @@ of Sunday, October 26, 2014. Using our favorite array methods (`map`, `filter`,
 5) Create an array that only contains only the tweet texts that contain the word
 "awesome" (upper or lower case). How many tweets are in the array?
 
+```
+tweets.filter(function(value) {
+	return value.text.toLowerCase().indexOf("awesome") !== -1;
+}).length
+
+// => 3
+```
+
 6) How many of the tweets contains URLs in them? (You can just look for "http:"
 as a substring).
 
-7) How many of the tweets are associated with users who have underscores ("_")
+```
+tweets.filter(function(value) {
+	return value.text.indexOf("http:") !== -1;
+}).length
+
+// => 176
+```
+
+
+7) How many of the tweets are associated with users who have underscores ('_')
 in their screen name?
 
+```
+tweets.filter(function(value) {
+	return value.user.screen_name.indexOf("_") !== -1;
+}).length
+
+// => 138
+```
+
 8) What is the screen name of the user with the most followers?
+
+```
+keyByValue(maxElement(userFollowers(tweets)))
+
+// => "HannahSimone : 207124"
+```
+```
+///////////////////////////////////////////////////////
+// Mapping user screen_name with followers_count
+///////////////////////////////////////////////////////
+
+var userFollowers = function (array) {
+
+  return array.reduce(function (obj, current) {
+
+    obj[current.user.screen_name] = current.user.followers_count;
+    return obj;
+
+    }, {});
+}
+
+///////////////////////////////////////////////////////
+// Finding the max value element of an Object function
+///////////////////////////////////////////////////////
+
+var maxElement = function(obj) {  
+
+  obj = userFollowers(tweets);
+  vArray = Object.values(obj);
+
+  return vArray.reduce(function(max, current) {
+    return max > current ? max : current;
+  });
+}
+
+///////////////////////////////////////////////////////
+// Finding key by value function
+///////////////////////////////////////////////////////
+
+var keyByValue = function(value) {
+  obj = elementsCount(tweets);
+
+  kArray = Object.keys(obj);
+  vArray = Object.values(obj);
+
+  valueIndex = vArray.indexOf(value);
+  key = kArray[valueIndex];
+
+  return key + " : " + value;
+};
+
+```
 
 9) The "statuses_count" property of a user object contains the number of tweets
 that the user has tweeted. How many users have tweeted exactly 1 tweet? What are
 their screen names?
 
+```
+tweets.filter(function(value) {
+  return value.user.statuses_count === 1;
+  }).length
+
+// => 2
+```
+```
+tweets.filter(function (value) {
+    return value.user.statuses_count === 1;
+    }).forEach(function (element) {
+        console.log(element.user.screen_name);
+      });
+
+// => asukab3bn4
+// => katashi4d24y
+
+```
+
 10) What is the average number of followers among those users associated with
 tweets that contain "lol" (case insensitive)?
+```
+var lolFollowers = tweets.filter(function (value) {
+  return value.text.toLowerCase().indexOf("lol") > -1;
+  })
+
+var count = lolFollowers.length;
+
+var sum = lolFollowers.reduce(function(sum, current) {
+      sum = sum + current.user.followers_count;
+      return sum;
+    }, 0)
+
+Math.floor( sum / count );
+
+// => 752
+```

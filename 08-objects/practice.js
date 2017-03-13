@@ -1,3 +1,21 @@
+//////////////////////////////////////////////////////
+// helper functions used throughout
+var closeTag = function (tag) {
+    var close = "</" + tag + ">";
+    return close;
+};
+
+var openTag = function (tag) {
+    var open = "<" + tag + ">";
+    return open;
+};
+
+var toTagString = function (tag, content) {
+    var result = openTag(tag) + content + closeTag(tag);
+    return result;
+};
+//////////////////////////////////////////////////////
+
 // Write a function called isUser that accepts an object, and returns true if it is
 // a valid user object, false otherwise. A valid user object will contain a
 // property called `name` which is a string, and a property called `screen_name`
@@ -22,6 +40,14 @@ var isUser = function (obj) {
           Object.keys(obj).length === 2
 };
 
+//////////////////////////////////////////////////////
+
+var isUser2 = function (obj) {
+    return typeof obj === "object" && Object.keys(obj).length === 2 &&
+        typeof obj["name"] === "string" && typeof obj["screen_name"] === "string";
+};
+
+//////////////////////////////////////////////////////
 
 // Often when working with HTML, we'll want to take data stored in an object and
 // display it as an HTML `div` element. For example, suppose we have a person
@@ -41,9 +67,34 @@ var userToDiv = function (obj) {
 
   if (!isUser(obj)) { throw "Not valid input" };
   return "<div><h1>" + obj.name + "</h1><h2>" + obj.screen_name + "</h2></div>";
-
 };
 
+//////////////////////////////////////////////////////
+
+var closeTag = function (tag) {
+    var close = "</" + tag + ">";
+    return close;
+};
+
+var openTag = function (tag) {
+    var open = "<" + tag + ">";
+    return open;
+};
+
+var toTagString = function (tag, content) {
+    var result = openTag(tag) + content + closeTag(tag);
+    return result;
+};
+
+var userToDiv2 = function (user) {
+    if (!isUser(user)) {
+        throw "input to userToDiv must be a user!";
+    }
+
+    return toTagString("div", toTagString("h1", user.name) + toTagString("h2", user.screen_name));
+};
+
+//////////////////////////////////////////////////////
 
 // Now suppose we have a user object that contains a list of tweets. In HTML, we
 // may want to represent that as a list element with a set of list items. That
@@ -84,6 +135,35 @@ var userWithTweetsToDiv = function (obj) {
 
 };
 
+//////////////////////////////////////////////////////
+
+var closeTag = function (tag) {
+    var close = "</" + tag + ">";
+    return close;
+};
+
+var openTag = function (tag) {
+    var open = "<" + tag + ">";
+    return open;
+};
+
+var toTagString = function (tag, content) {
+    var result = openTag(tag) + content + closeTag(tag);
+    return result;
+};
+
+var userWithTweetsToDiv2 = function (user) {
+    var listElt = toTagString("ul", user.tweets.map(function (tweet) {
+        return toTagString("li", tweet);
+    }).join(""));
+
+    var userElt = toTagString("h1", user.name) + toTagString("h2", user.screen_name) + listElt;
+
+    return toTagString("div", userElt);
+};
+
+//////////////////////////////////////////////////////
+
 
 // Write a function that accepts an array of strings, and returns an object that
 // represents the number of times that each string appears in the array. This might
@@ -118,3 +198,17 @@ var frequencies = function (array) {
       return obj;
   }, {})
 };
+
+//////////////////////////////////////////////////////
+
+var frequencies2 = function (words) {
+    return words.reduce(function (frequencies, word) {
+        if (typeof frequencies[word] === "undefined") {
+            frequencies[word] = 0;
+        }
+        frequencies[word] = frequencies[word] + 1;
+        return frequencies;
+    }, {});
+};
+
+//////////////////////////////////////////////////////
