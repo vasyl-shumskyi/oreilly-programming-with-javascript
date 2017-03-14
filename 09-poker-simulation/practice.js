@@ -3,20 +3,56 @@ var ranks = ["two", "three", "four", "five", "six", "seven", "eight",
              "nine", "ten", "jack", "queen", "king", "ace"];
 
 // return true if the input is a suit, false otherwise.
-var isSuit = function () {
+var isSuit = function (suit) {
+
+  return  suit === "clubs"    ||
+          suit === "diamonds" ||
+          suit === "hearts"   ||
+          suit === "spades"
 };
 
 // return true if the input is a rank, false otherwise.
-var isRank = function () {
+var isRank = function (rank) {
+
+  return  rank === "two"      ||
+          rank === "three"    ||
+          rank === "four"     ||
+          rank === "five"     ||
+          rank === "six"      ||
+          rank === "seven"    ||
+          rank === "eight"    ||
+          rank === "nine"     ||
+          rank === "ten"      ||
+          rank === "jack"     ||
+          rank === "queen"    ||
+          rank === "king"     ||
+          rank === "ace"
 };
 
 // return true if the input is a card object, false otherwise.
-var isCard = function () {
+var isCard = function (obj) {
+
+  return  typeof obj === "object" &&
+          isSuit(obj.suit)        &&
+          isRank(obj.rank)
 };
 
 // return true if the input is a deck of cards (an array of 52 cards
 // with no duplicates)
-var isDeck = function () {
+
+var hasDupsObjects = function(array) {
+
+  return array.map(function(value) {
+    return value.suit + value.rank
+
+  }).some(function(value, index, array) {
+       return array.indexOf(value) !== array.lastIndexOf(value);
+     })
+};
+
+
+var isDeck = function (deck) {
+  return  deck.length === 52 && !hasDupsObjects(deck);
 };
 
 // construct a deck of 52 cards that will pass the isDeck method
