@@ -187,16 +187,81 @@ var lowCard = function (array) {
 // true if the hand *contains* a pair, so if you send in two-pair or
 // three-of-a-kind it should still return true. We'll account for that
 // later.
-var containsPair = function () {
+var containsPair = function (array) {
+
+  return array.map(function (value) {
+    return value.rank;
+
+  }).some(function (value, index, array) {
+    return index !== array.lastIndexOf(value);
+  });
+
 };
 
 
 // Returns true if the hand contains two-pair
-var containsTwoPair = function () {
-};
+var containsTwoPair = function(array) {
+
+  return array.map(function (value) {
+    return value.rank;
+
+    }).some(function (value, index, array) {
+
+        if (index !== array.lastIndexOf(value)) {
+
+          array.splice(index, 1)
+          array.splice(array.lastIndexOf(value), 1)
+
+          return array.some(function (value, index, array) {
+            return index !== array.lastIndexOf(value);
+          });
+        }
+
+      })
+}
+
 
 // Returns true if the hand contains three-of-a-kind
-var containsThreeOfAKind = function () {
+
+
+var containsThreeOfAKind = function (array) {
+
+  //var obj = {};
+  var n = 3;
+
+  return array.map(function(value) {
+    return value.rank;
+
+  }).reduce(function(obj, current) {
+
+    obj[current] > 0 ? obj[current] = obj[current] + 1 : obj[current] = 1
+
+
+//    if (obj[current] > 0) {
+//        obj[current] = obj[current] + 1;
+//    } else {
+//        obj[current] = 1;
+//    }
+
+    //console.log("objj", obj)
+console.log("sfvsdfv", obj)
+    return obj;
+//    return Object.values(obj);
+
+//    console.log("objj", Object.values(obj))
+//    return Object.values(obj);
+
+    //console.log(obj, Object.values(obj));
+  // return Object.values(obj);
+
+  //  obj[value] = ( obj[value] || 0 ) + 1;     //  The expression counts[x] || 0 returns the value of counts[x] if it is set, otherwise 0
+//    console.log(obj);
+//    return Object.values(obj);
+
+  }, {})
+  //.forEach(function(value, index, array) { console.log(value, array); })
+
+
 };
 
 // Returns true if the hand contains any kind of straight, including
