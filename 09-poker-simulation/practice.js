@@ -56,21 +56,81 @@ var isDeck = function (deck) {
 };
 
 // construct a deck of 52 cards that will pass the isDeck method
+
+
 var createDeck = function () {
+
+  var deck = [];
+
+  suits.forEach(function(suit) {
+      ranks.forEach(function(rank) {
+        card = {};                          // we need to null card, otherwise last card values will overwrite all deck cards!
+        card["suit"] = suit;
+        card["rank"] = rank;
+        deck.push(card);
+    });
+  });
+
+  return deck;
 };
 
 // fisher-yates shuffle
-var shuffle = function () {
+// Algorithm:
+// https://bost.ocks.org/mike/shuffle/
+// https://www.youtube.com/watch?v=tLxBwSL3lPQ
+
+var shuffle = function (deck) {
+
+  var index1;
+
+  for (index1 = deck.length - 1; index1 >= 0; index1 = index1 - 1) {
+
+    var card1 = deck[index1];
+    var index2 = Math.floor( Math.random() * index1 );
+    var card2 = deck[index2];
+
+    if (index1 !== index2) {
+      deck[index1] = card2;
+      deck[index2] = card1;
+    }
+  }
+
+  return deck;
 };
 
 // return true if the input is an array of 5 valid cards
-var isHand = function () {
+var isHand = function (array) {
+
+  return  Array.isArray(array) &&
+          array.length === 5 &&
+          array.every(function(value) { return isCard(value) })
 };
 
 // This function should return the first five cards from a shuffled
 // deck.
-var dealHand = function () {
+
+var dealHand = function (array) {
+  return shuffle(createDeck()).slice(0, 4);
+}
+
+/*
+// Long solution
+var dealHand = function (array) {
+
+  var i;
+  var number = 5;
+  var five = [];
+  var deck = shuffle(createDeck())
+
+  for (i = 0; i < number; i = i + 1) {
+    five.push(deck[i])
+  }
+
+  return five;
 };
+*/
+
+
 
 // This function should accept two card objects, and return true if
 // the first card is higher than the second one. The ordering is based
@@ -80,22 +140,47 @@ var dealHand = function () {
 // diamonds, hearts, spades. In this case, clubs is the lowest suit,
 // and spades is the highest. If they are the same rank and suit then
 // this function should return false since they are equal.
-var isHigherThan = function () {
+var isHigherThan = function (card1, card2) {
+
+    if (card1.rank === card2.rank && card1.suit === card2.suit) {
+      return false;
+    }
+
+    var result;
+
+    if (ranks.indexOf(card1.rank) > ranks.indexOf(card2.rank)) {
+      result = true;
+    } else if (ranks.indexOf(card1.rank) === ranks.indexOf(card2.rank) && suits.indexOf(card1.suit) > suits.indexOf(card2.suit)) {
+      result = true;
+    } else {
+      result = false;
+    }
+
+    return result;
 };
 
-// This function is similar (though not the opposite) of the isHigher
+// This function is similar (though not the opposite) of the isHigher         // Not the opposite?
 // function.
-var isLowerThan = function () {
+var isLowerThan = function (card1, card2) {
+  return !isHigherThan(card1, card2)
 };
 
 // Use the isHigher function to find the highest card in an array
 // of cards
-var highCard = function () {
+var highCard = function (array) {
+
+  return array.reduce(function (highest, current) {
+    return isHigherThan(current, highest) ? current : highest
+  })
 };
 
 // Use the isLower function to find the lowest card in an array
 // of cards
-var lowCard = function () {
+var lowCard = function (array) {
+
+  return array.reduce(function(lowest, current) {
+    return isLowerThan(lowest, current) ? lowest : current;
+  })
 };
 
 // Returns true if the hand contains a pair. Remember -- it returns
