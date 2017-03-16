@@ -250,55 +250,112 @@ var containsThreeOfAKind = function (array) {
 // one where the ace is low
 var containsStraight = function (array) {
 
+// START - Mutating Ace
+  var ranksAce;
+
+  var rankArray = array.map(function (value) {
+    return value.rank;
+  })
+
+  if (rankArray.indexOf("two") > -1 && rankArray.indexOf("ace") > -1) {
+     ranksAce = ["ace"].concat(ranks).slice(0,-1)         // putting ["ace"] in the beginning of the array and remove it from end
+  } else {
+     ranksAce = ranks;
+  }
+// END - Mutating Ace
 
   return array.map(function(value, index, array) {
+    return ranksAce.indexOf(value.rank);
+
+  }).sort(function (a,b) { return a - b;                 // to sort number compareFunction() needed https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
+  }).map(function (value, index) {
 
     //  [0,1,2,3,4]   indexes
     //  [5,6,7,8,9]   values
-   //   [5,5,5,5,5]   difference
+    //  [5,5,5,5,5]   difference
 
-    return ranks.indexOf(value.rank);
+    return value - index;
 
-// to sort number compareFunction() needed https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-  }).sort(function (a, b) { return a - b;
   }).every(function(value, index, array) {
+     return array[0] === value;                           // checking if all values are the same
+  })
 
-
-      //return value + 1 === value[index + 1]
-
-var nextVal = array[index+1];
-
-while (nextVal !== undefined) {
-  console.log("v+1, array[index+1]", value + 1, array[index + 1]);
-  return value + 1 === nextVal;
 }
-  //  return value - (value - 1) === 1
+
+// Returns true if the hand contains a flush
+var containsFlush = function (array) {
+
+  return array.map(function (value) {
+    return value.suit;
+  }).every(function (value, index, array) {
+     return array[0] === value;                            // checking if all values are the same
   })
 
 };
 
-// Returns true if the hand contains a flush
-var containsFlush = function () {
-};
-
 // Returns true if the hand contains a full house
-var containsFullHouse = function () {
+var containsFullHouse = function (array) {
+  return containsTwoPair(array) && containsThreeOfAKind(array);       // !! containsTwoPair :) && ThreeOfAKind
+
 };
 
 // Returns true if the hand contains four-of-a-kind
-var containsFourOfAKind = function () {
+var containsFourOfAKind = function (array) {
+
+  var suitNumberObj = array.reduce(function (obj, value) {
+
+    obj[value.rank] = (obj[value.rank] || 0) + 1;
+    return obj;
+  }, {})
+
+  return Object.values(suitNumberObj).some(function (value) {
+    return value === 4;
+  });
+
 };
 
 // Returns true if the hand contains a straight-flush
-var containsStraightFlush = function () {
+var containsStraightFlush = function (array) {
+  return containsStraight(array) && containsFlush(array);
+
 };
 
 // Returns true if the hand contains a royal-flush
-var containsRoyalFlush = function () {
+
+var hasKing = function (array) {
+
+  return array.map(function(value) {
+    return value.rank;
+
+  }).some(function (value) {
+        return value === "king";
+     })
+}
+
+var containsRoyalFlush = function (array) {
+  return containsStraightFlush(array) && hasKing(array);
+
 };
 
 // Returns a string representing the highest rank a hand has. For
 // example, if you send in a full-house, it will contain a pair and a
 // three-of-a-kind as well, but a full-house is the highest rank
-var highestRank = function () {
+var highestRank = function (array) {
+
+  var result;
+
+  if        ( containsRoyalFlush(array) )     { result = "royal flush"
+  } else if ( containsStraightFlush(array) )  { result = "straight flush"
+  } else if ( containsFourOfAKind(array) )    { result = "four of a kind"
+  } else if ( containsFullHouse(array) )      { result = "full house"
+  } else if ( containsFlush(array) )          { result = "flush"
+  } else if ( containsStraight(array) )       { result = "straight"
+  } else if ( containsThreeOfAKind(array) )   { result = "three of a kind"
+  } else if ( containsTwoPair(array) )        { result = "two pair"
+  } else if ( containsPair(array) )           { result = "pair"
+  } else if ( highCard(array) )               { result = "bust"
+  }
+
+  return result;
 };
