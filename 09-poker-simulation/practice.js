@@ -223,50 +223,58 @@ var containsTwoPair = function(array) {
 
 // Returns true if the hand contains three-of-a-kind
 
-
-var containsThreeOfAKind = function (array) {
-
-  //var obj = {};
-  var n = 3;
+var threeOfAKindObj = function (array) {
 
   return array.map(function(value) {
     return value.rank;
 
-  }).reduce(function(obj, current) {
+  }).reduce(function(obj, value) {
+    obj[value] = ( obj[value] || 0 ) + 1;                               // The expression counts[x] || 0 returns the value of counts[x] if it is set, otherwise 0
+//  obj[value] > 0 ? obj[value] = obj[value] + 1 : obj[value] = 1       // Will works as well
 
-    obj[current] > 0 ? obj[current] = obj[current] + 1 : obj[current] = 1
-
-
-//    if (obj[current] > 0) {
-//        obj[current] = obj[current] + 1;
-//    } else {
-//        obj[current] = 1;
-//    }
-
-    //console.log("objj", obj)
-console.log("sfvsdfv", obj)
     return obj;
-//    return Object.values(obj);
+    }, {})
+}
 
-//    console.log("objj", Object.values(obj))
-//    return Object.values(obj);
+var containsThreeOfAKind = function (array) {
 
-    //console.log(obj, Object.values(obj));
-  // return Object.values(obj);
+  var objValues = Object.values(threeOfAKindObj(array))
 
-  //  obj[value] = ( obj[value] || 0 ) + 1;     //  The expression counts[x] || 0 returns the value of counts[x] if it is set, otherwise 0
-//    console.log(obj);
-//    return Object.values(obj);
+  return objValues.some(function (value) {
+    return value === 3;
+  })
+}
 
-  }, {})
-  //.forEach(function(value, index, array) { console.log(value, array); })
-
-
-};
 
 // Returns true if the hand contains any kind of straight, including
 // one where the ace is low
-var containsStraight = function () {
+var containsStraight = function (array) {
+
+
+  return array.map(function(value, index, array) {
+
+    //  [0,1,2,3,4]   indexes
+    //  [5,6,7,8,9]   values
+   //   [5,5,5,5,5]   difference
+
+    return ranks.indexOf(value.rank);
+
+// to sort number compareFunction() needed https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+  }).sort(function (a, b) { return a - b;
+  }).every(function(value, index, array) {
+
+
+      //return value + 1 === value[index + 1]
+
+var nextVal = array[index+1];
+
+while (nextVal !== undefined) {
+  console.log("v+1, array[index+1]", value + 1, array[index + 1]);
+  return value + 1 === nextVal;
+}
+  //  return value - (value - 1) === 1
+  })
+
 };
 
 // Returns true if the hand contains a flush
