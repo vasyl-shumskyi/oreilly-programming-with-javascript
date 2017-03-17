@@ -9,6 +9,9 @@ var isSuit = function (suit) {
           suit === "diamonds" ||
           suit === "hearts"   ||
           suit === "spades"
+
+//     return suits.indexOf(suit.toLowerCase()) !== -1;        // !!! should be enough
+
 };
 
 // return true if the input is a rank, false otherwise.
@@ -27,6 +30,9 @@ var isRank = function (rank) {
           rank === "queen"    ||
           rank === "king"     ||
           rank === "ace"
+
+//     return ranks.indexOf(rank.toLowerCase()) !== -1;        // !!! should be enough
+
 };
 
 // return true if the input is a card object, false otherwise.
@@ -53,6 +59,8 @@ var hasDupsObjects = function(array) {
 
 var isDeck = function (deck) {
   return  deck.length === 52 && !hasDupsObjects(deck);
+
+// && deck.every(function(card) {return isCard(card) })     // !
 };
 
 // construct a deck of 52 cards that will pass the isDeck method
@@ -64,10 +72,12 @@ var createDeck = function () {
 
   suits.forEach(function(suit) {
       ranks.forEach(function(rank) {
-        card = {};                          // we need to null card, otherwise last card values will overwrite all deck cards!
+        card = {};                                // we need to null card, otherwise last card values will overwrite all deck cards!
         card["suit"] = suit;
         card["rank"] = rank;
         deck.push(card);
+
+//      deck.push({ "suit": suit, "rank": rank });   // ! short & simple
     });
   });
 
@@ -80,6 +90,8 @@ var createDeck = function () {
 // https://www.youtube.com/watch?v=tLxBwSL3lPQ
 
 var shuffle = function (deck) {
+
+// if (!isDeck(deck)) { throw "not a deck!"; }        // ! validation
 
   var index1;
 
@@ -109,8 +121,8 @@ var isHand = function (array) {
 // This function should return the first five cards from a shuffled
 // deck.
 
-var dealHand = function (array) {
-  return shuffle(createDeck()).slice(0, 4);
+var dealHand = function () {
+  return shuffle(createDeck()).slice(0, 5);
 }
 
 /*
@@ -157,12 +169,19 @@ var isHigherThan = function (card1, card2) {
     }
 
     return result;
+
+// !!! short & sweet (all function may look like the following)
+//
+// return  ranks.indexOf(card1.rank) > ranks.indexOf(card2.rank)   ||
+//        (ranks.indexOf(card1.rank) === ranks.indexOf(card2.rank) && suits.indexOf(card1.suit) > suits.indexOf(card2.suit))
 };
 
 // This function is similar (though not the opposite) of the isHigher         // Not the opposite?
 // function.
 var isLowerThan = function (card1, card2) {
   return !isHigherThan(card1, card2)
+//        && (first.rank !== second.rank || first.suit !== second.suit);      // ! Not the opposite
+
 };
 
 // Use the isHigher function to find the highest card in an array
@@ -241,7 +260,7 @@ var containsThreeOfAKind = function (array) {
   var objValues = Object.values(threeOfAKindObj(array))
 
   return objValues.some(function (value) {
-    return value === 3;
+    return value === 3;                             // !! >=3 (at least 3)
   })
 }
 
@@ -282,6 +301,26 @@ var containsStraight = function (array) {
   })
 
 }
+
+///////////////////////////////////////////////////
+// !!! Awesome solution
+var containsStraight2 = function (hand) {
+
+    var result = false;
+
+    var nonAces = hand.filter(function (card) {
+        return card.rank !== "ace";
+    });
+
+    if (!containsPair(hand) && ranks.indexOf(highCard(hand).rank) - ranks.indexOf(lowCard(hand).rank) === 4) {
+        result = true;
+    } else if (nonAces.length === 4 && !containsPair(nonAces) && highCard(nonAces).rank === "five" && lowCard(nonAces).rank === "two") {      // ! highCard / lowCard
+        result = true;
+    }
+
+    return result;
+};
+///////////////////////////////////////////////////
 
 // Returns true if the hand contains a flush
 var containsFlush = function (array) {
@@ -335,6 +374,7 @@ var hasKing = function (array) {
 
 var containsRoyalFlush = function (array) {
   return containsStraightFlush(array) && hasKing(array);
+// !!! && lowCard(array) === "ten" (so hasKing no needed)
 
 };
 
